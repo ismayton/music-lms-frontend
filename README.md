@@ -1,3 +1,7 @@
+# Music LMS Frontend
+
+This project is a React.js frontend designed as an LMS structure for musicians and music teachers.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
