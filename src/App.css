@@ -52,10 +52,19 @@
   color: white;
 }
 
-
 .lesson {
-  width: 500px;
   margin: auto;
   margin-bottom: 100px;
 }
 
+.lesson .content {
+  width: 500px;
+  margin: auto;
+  margin-bottom: 25px;
+}
+
+.lesson .video {
+  width: 600px;
+  height: 300px;
+  margin: auto;
+}
