@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 export default class DemoSessionSwitch extends Component {
     state = {
-        session: ''
+        session: 'logged out'
     }
     
-    sessionTypes = ['user', 'teacher', 'logged_out']
+    sessionTypes = ['user', 'teacher', 'logged out']
 
     renderButtons = () => {
-        let selected = this.props.session
+        let selected = this.state.session
         return this.sessionTypes.map( session => 
             <button 
                 type="radio"

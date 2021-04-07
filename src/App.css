@@ -47,7 +47,7 @@
   color: white;
 }
 
-#logged_out.selected {
+.selected {
   background-color: red;
   color: white;
 }
@@ -66,5 +66,10 @@
 .lesson .video {
   width: 600px;
   height: 300px;
+  margin: auto;
+}
+
+.blurb {
+  width: 300px;
   margin: auto;
 }

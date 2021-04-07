@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import Course from '../components/Course';
+import CoursesContainer from './CoursesContainer';
 
 export default class TeacherViewContainer extends Component { 
-    renderCourses() {
-        return this.props.courses.map( course => <Course course={course}/> )
-    }
-
     render() {
         return <div>
-            {this.renderCourses()}
+            <h1>Teacher Container</h1>
+            <div className="blurb">
+                <h4>Teacher specific features will go here. Things like:</h4>
+                <ul>
+                    <li>listing of all owned courses</li>
+                    <li>listing of all subscribed users</li>
+                </ul>
+            </div>
+            <CoursesContainer courses={this.props.courses} />
         </div>
     }
 }
