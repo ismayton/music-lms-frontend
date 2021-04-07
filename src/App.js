@@ -5,6 +5,7 @@ import CoursesContainer from './containers/CoursesContainer'
 import fetchCourses from './actions/fetchCourses'
 import LoginContainer from './containers/LoginContainer'
 import createUser from './actions/createUser'
+import changeSession from './actions/changeSession'
 
 class App extends Component {
   
@@ -19,7 +20,7 @@ class App extends Component {
         <h1>Music LMS App</h1>
       </header>
       <body>
-        <LoginContainer session={this.props.session} createUser={this.props.createUser}/>
+        <LoginContainer session={this.props.session} changeSession={this.props.changeSession} createUser={this.props.createUser}/>
         <CoursesContainer courses={this.props.courses}/>
       </body>
     </div>
@@ -34,7 +35,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCourses: () => dispatch(fetchCourses()),
-    createUser: (user) => dispatch(createUser(user))
+    createUser: (user) => dispatch(createUser(user)),
+    changeSession: (session) => dispatch(changeSession(session))
   }
 }
 

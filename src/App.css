@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+#user.selected {
+  background-color: blue;
+  color: white;
+}
+
+#teacher.selected {
+  background-color: orange;
+  color: white;
+}
+
+#logged_out.selected {
+  background-color: red;
+  color: white;
+}
+
+
+
+
