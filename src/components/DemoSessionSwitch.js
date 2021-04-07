@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
 export default class DemoSessionSwitch extends Component {
-
     state = {
         session: ''
     }
-
+    
     sessionTypes = ['user', 'teacher', 'logged_out']
 
     renderButtons = () => {
