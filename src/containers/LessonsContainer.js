@@ -7,7 +7,7 @@ export default class LessonsContainer extends Component {
     }
 
     render() {
-        return <div>
+        return <div className="lessons">
             {this.renderLessons()}
         </div>
     }

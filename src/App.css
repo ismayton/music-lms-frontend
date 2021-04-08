@@ -39,26 +39,27 @@
 
 /* CUSTOM CODE STARTS HERE */
 
-/* General Styling */
+/* GENERAL */
 button {
   padding: 8px 16px;
   text-decoration: none;
-  min-width: 150px;
+  min-width: 100px;
   margin: 5px;
 }
 
 /* SESSION NAV BAR */
 .session {
   position: fixed;
-  float: right;
+  right: 0;
+  top: 0;
+  background-color: #282c34;
 }
 
 .session ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
+  padding: 15px 0px;
+  width: 150px;
 }
 
 #user.selected {
@@ -73,25 +74,46 @@ button {
 
 .selected {
   background-color: red;
-  color: white;
+  color: white; 
 }
 
-/* LESSON STYLING */
-.lesson {
+/* COURSE */
+.course {
+  width: auto;
+  margin: 0px 150px 50px 0px;
+  clear: both;
+  border: 1px black solid;
+  height: inherit;
+}
+
+/* COURSE NAV BAR */
+.course-nav {
+  border: 1px black solid;
+  float: left;
+  width: 200px;
   margin: auto;
+  margin-bottom: 15px;
+}
+
+.course-nav ul {
+  list-style-type: none;
+  padding: 15px 0px;
+  width: 200px;
+}
+/* LESSONS STYLING */
+.lessons {
+  margin: auto;
+  margin-left: 200px;
   margin-bottom: 100px;
 }
-
-.lesson .content {
-  width: 500px;
-  margin: auto;
-  margin-bottom: 25px;
+/* LESSON STYLING */
+.lesson {
+  margin-bottom: 50px;
 }
 
 .lesson .video {
-  width: 600px;
-  height: 300px;
-  margin: auto;
+  height: auto;
+  width: auto;
 }
 
 .blurb {

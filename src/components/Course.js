@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LessonsContainer from '../containers/LessonsContainer'
+import CourseTOC from './CourseTOC'
 
 export default class Course extends Component {
     state = {
@@ -13,9 +14,9 @@ export default class Course extends Component {
     }
     
     render() {
-        return <div>
+        return <div className="course">
             <h1>{this.props.course.title}</h1>
-            <button type="button" onClick={event => this.handleClick(event)}>{this.state.showHideLessons ? "Hide Lessons" : "Show Lessons"}</button>
+            <CourseTOC lessons={this.props.course.lessons} showHideLessons={this.handleClick} hiddenOrShown={this.state.showHideLessons}/>
             { this.state.showHideLessons ? <LessonsContainer lessons={this.props.course.lessons} /> : null }
         </div>
     }

@@ -27,7 +27,6 @@ export default class DemoSessionSwitch extends Component {
         this.setState({
             session: event.target.name
         })
-        this.handleSubmit(event)
     }
 
     handleSubmit = event => {
@@ -37,7 +36,7 @@ export default class DemoSessionSwitch extends Component {
 
     render() {
         return <form className="session" onSubmit={event => this.handleSubmit(event)}>
-            <h4>Session Type</h4>
+            <h4>Session</h4>
             <ul>{this.renderButtons()}</ul>
         </form>
     }

@@ -30,9 +30,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Music LMS App</h1>
+          <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/>
         </header>
         <body>
-          <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/>
           <ContentContainer courses={this.props.courses} session={this.props.session}/>
         </body>
       </div>
