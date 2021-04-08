@@ -79,7 +79,6 @@ button {
 
 /* COURSE */
 .course {
-  width: auto;
   margin: 0px 150px 50px 0px;
   clear: both;
   border: 1px black solid;
@@ -116,8 +115,8 @@ button {
 }
 
 .lesson .video {
-  height: auto;
-  width: auto;
+  height: 360px;
+  width: 640px;
 }
 
 .blurb {
