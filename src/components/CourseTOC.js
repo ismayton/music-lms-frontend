@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 export default class CourseTOC extends Component {
   
     renderMenu = () => {
-        return this.props.lessons.map( lesson => 
+        return this.props.lessons.map( (lesson, index) => 
             <li>
-                <button type="radio" id={lesson.title} name={lesson.title}>
+                <button type="radio" id={index} name={lesson.title} onClick={event => this.props.showOneLesson(event)}>
                     {lesson.title}
                 </button>
             </li>
@@ -17,7 +17,7 @@ export default class CourseTOC extends Component {
             <h4>Choose a Lesson</h4>
             <ul>
                 {this.renderMenu()}
-                <button type="button" onClick={event => this.props.showHideLessons(event)}>{this.props.hiddenOrShown ? "Hide All Lessons" : "Show All Lessons"}</button>
+                <button type="button" onClick={event => this.props.showAllLessons(event)}>{this.props.hiddenOrShown ? "Hide All Lessons" : "Show All Lessons"}</button>
             </ul>
         </div>
     }
