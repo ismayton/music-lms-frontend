@@ -37,6 +37,30 @@
   }
 }
 
+/* CUSTOM CODE STARTS HERE */
+
+/* General Styling */
+button {
+  padding: 8px 16px;
+  text-decoration: none;
+  min-width: 150px;
+  margin: 5px;
+}
+
+/* SESSION NAV BAR */
+.session {
+  position: fixed;
+  float: right;
+}
+
+.session ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
 #user.selected {
   background-color: blue;
   color: white;
@@ -52,6 +76,7 @@
   color: white;
 }
 
+/* LESSON STYLING */
 .lesson {
   margin: auto;
   margin-bottom: 100px;
@@ -73,3 +98,8 @@
   width: 300px;
   margin: auto;
 }
+
+
+
+
+

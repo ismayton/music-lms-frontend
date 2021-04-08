@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>{this.props.session}</h1>
+          <h1>Music LMS App</h1>
         </header>
         <body>
           <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/>

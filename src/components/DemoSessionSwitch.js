@@ -10,14 +10,16 @@ export default class DemoSessionSwitch extends Component {
     renderButtons = () => {
         let selected = this.state.session
         return this.sessionTypes.map( session => 
-            <button 
-                type="radio"
-                id={session}
-                className={`${selected === session ? "selected" : ""}`}
-                name={session} 
-                onClick={event => this.handleClick(event)}>
-                {session}
-            </button>
+            <li>
+                <button
+                    type="radio"
+                    id={session}
+                    className={`${selected === session ? "selected" : ""}`}
+                    name={session} 
+                    onClick={event => this.handleClick(event)}>
+                    {session}
+                </button>
+            </li>
         )
     }
 
@@ -25,6 +27,7 @@ export default class DemoSessionSwitch extends Component {
         this.setState({
             session: event.target.name
         })
+        this.handleSubmit(event)
     }
 
     handleSubmit = event => {
@@ -33,8 +36,9 @@ export default class DemoSessionSwitch extends Component {
     }
 
     render() {
-        return <form onSubmit={event => this.handleSubmit(event)}>
-            {this.renderButtons()}
+        return <form className="session" onSubmit={event => this.handleSubmit(event)}>
+            <h4>Session Type</h4>
+            <ul>{this.renderButtons()}</ul>
         </form>
     }
 }
