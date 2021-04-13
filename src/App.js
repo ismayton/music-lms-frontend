@@ -5,23 +5,20 @@ import { connect } from 'react-redux';
 // CONTAINERS
 import ContentContainer from './containers/ContentContainer';
 import LoginContainer from './containers/LoginContainer';
-// import TeacherViewContainer from './containers/TeacherViewContainer';
-// import UserViewContainer from './containers/UserViewContainer';
-// import CoursesContainer from './containers/CoursesContainer';
 
 //ACTIONS
 import fetchCourses from './actions/fetchCourses';
-import changeSession from './actions/changeSession';
+import fetchSession from './actions/fetchSession';
 import createUser from './actions/createUser';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchCourses()
+    this.props.fetchCourses(this.props.session)
   }
 
   handleSessionChange = (session) => {
-    this.props.changeSession(session)
+    this.props.fetchSession(session)
     this.props.fetchCourses(session)
   }
 
@@ -46,9 +43,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCourses: (params) => dispatch(fetchCourses(params)),
+    fetchCourses: (session) => dispatch(fetchCourses(session)),
     createUser: (user) => dispatch(createUser(user)),
-    changeSession: (session) => dispatch(changeSession(session))
+    fetchSession: (session) => dispatch(fetchSession(session))
   }
 }
 

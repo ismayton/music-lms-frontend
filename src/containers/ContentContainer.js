@@ -4,10 +4,11 @@ import UserViewContainer from './UserViewContainer';
 import LoggedOutViewContainer from './LoggedOutViewContainer';
 
 export default class CoursesContaner extends Component { 
+    
     renderContainer() {
-        if (this.props.session === "teacher") {
+        if (this.props.session === 'teacher') {
             return <TeacherViewContainer courses={this.props.courses}/>
-        } else if (this.props.session === "user") {
+        } else if (this.props.session === 'user') {
             return <UserViewContainer courses={this.props.courses} />
         } else {
             return <LoggedOutViewContainer courses={this.props.courses}/>

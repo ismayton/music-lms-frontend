@@ -7,17 +7,25 @@ const rootReducer = (state = { courses: [], loading: false, session: 'logged_out
                 loading: true
             }
 
-        case 'ADD_COURSES':
-            return {
+        case 'CHANGE_COURSES':
+            console.log(action)
+        return {
                 ...state,
                 courses: action.courses,
                 loading: false
             }
 
-        case 'CHANGE_SESSION':
+        case 'LOADING_SESSION':
             return {
+                ...state,
+                loading: true
+            }
+
+        case 'CHANGE_SESSION':
+        return {
                 ...state, 
-                session: action.session
+                session: action.session,
+                loading: false
             }
             
         default: return state;
