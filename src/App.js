@@ -30,7 +30,7 @@ class App extends Component {
           <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/>
         </header>
         <body>
-          <ContentContainer courses={this.props.courses} session={this.props.session}/>
+          <ContentContainer courses={this.props.courses} session={this.props.session} user={this.props.user}/>
         </body>
       </div>
     );
@@ -38,7 +38,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { courses: state.courses, loading: state.loading, session: state.session}
+  return { courses: state.courses, loading: state.loading, session: state.session, user: state.user}
 }
 
 const mapDispatchToProps = dispatch => {

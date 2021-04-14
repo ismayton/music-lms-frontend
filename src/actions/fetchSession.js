@@ -1,9 +1,10 @@
 const fetchSession = (session) => {
     let url
+    // UPDATE THIS METHOD TO TAKE A LOG IN (STRETCH GOAL) //
     if (session === "user") {
-        url = 'http://127.0.0.1:3000/api/v1/users/1/courses'
+        url = 'http://127.0.0.1:3000/api/v1/users/1'
     } else if (session === "teacher") {
-        url = 'http://127.0.0.1:3000/api/v1/teachers/2/courses'
+        url = 'http://127.0.0.1:3000/api/v1/teachers/2'
     } else {
         url = 'http://127.0.0.1:3000/api/v1/courses'
     }
@@ -17,7 +18,6 @@ const fetchSession = (session) => {
                 type: 'CHANGE_SESSION', 
                 session: session,
                 user: json
-                /// USE THIS FOR RENDERING USER INFO IN USER AND TEACHER VIEWS
             }) 
         })
     }

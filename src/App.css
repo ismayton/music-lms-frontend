@@ -119,7 +119,7 @@ button {
   width: 640px;
 }
 
-.blurb {
+.blurb, .dashboard {
   width: 300px;
   margin: auto;
 }

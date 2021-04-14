@@ -7,11 +7,11 @@ export default class CoursesContaner extends Component {
     
     renderContainer() {
         if (this.props.session === 'teacher') {
-            return <TeacherViewContainer courses={this.props.courses}/>
+            return <TeacherViewContainer {...this.props}/>
         } else if (this.props.session === 'user') {
-            return <UserViewContainer courses={this.props.courses} />
+            return <UserViewContainer {...this.props} />
         } else {
-            return <LoggedOutViewContainer courses={this.props.courses}/>
+            return <LoggedOutViewContainer {...this.props}/>
         }
     }
 

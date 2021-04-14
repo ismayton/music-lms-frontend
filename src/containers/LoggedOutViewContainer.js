@@ -7,7 +7,7 @@ export default class LoggedOutViewContainer extends Component {
         return <div>
             <h1>Logged Out Container</h1>
             <div className="blurb">
-                <h4>User specific features will go here. Things like:</h4>
+                <h4>Logged out specific features will go here. Things like:</h4>
                 <ul>
                     <li>listing of all courses</li>
                     <li>listing of all teachers</li>
