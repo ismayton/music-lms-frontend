@@ -99,6 +99,14 @@ button {
   padding: 15px 0px;
   width: 200px;
 }
+
+/* STYLING FOR NavLink OBJECTS */
+a:link, a:visited {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
 /* LESSONS STYLING */
 .lessons {
   margin: auto;

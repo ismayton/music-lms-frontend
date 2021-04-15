@@ -1,51 +1,61 @@
 import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // CONTAINERS
-import ContentContainer from './containers/ContentContainer';
-import LoginContainer from './containers/LoginContainer';
+// import ContentContainer from './containers/ContentContainer';
+// import LoginContainer from './containers/LoginContainer';
+import TeacherViewContainer from './containers/TeacherViewContainer';
+import UserViewContainer from './containers/UserViewContainer';
+import LoggedOutViewContainer from './containers/LoggedOutViewContainer';
+
+// COMPONENTS 
+import NavBar from './components/NavBar';
 
 //ACTIONS
 import fetchCourses from './actions/fetchCourses';
-import fetchSession from './actions/fetchSession';
-import createUser from './actions/createUser';
+// import createUser from './actions/createUser';
+import fetchTeacher from './actions/fetchTeacher';
+import fetchUser from './actions/fetchUser';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchCourses(this.props.session)
-  }
-
-  handleSessionChange = (session) => {
-    this.props.fetchSession(session)
-    this.props.fetchCourses(session)
+    this.props.fetchCourses()
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Music LMS App</h1>
-          <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/>
-        </header>
-        <body>
-          <ContentContainer courses={this.props.courses} session={this.props.session} user={this.props.user}/>
-        </body>
-      </div>
+      <Router >
+        
+
+        <div className="App">
+          <header className="App-header">
+            <h1>Music LMS App</h1>
+            <NavBar {...this.props} />
+            {/* <LoginContainer changeSession={this.handleSessionChange} session={this.props.session}/> */}
+          </header>
+          <body>
+            <Route exact path="/" render={() => (<LoggedOutViewContainer {...this.props}/>)} />
+            <Route path="/users" render={() => (<UserViewContainer {...this.props} />)} />
+            <Route path="/teachers" render={() => (<TeacherViewContainer {...this.props} />)} />
+          </body>
+        </div>
+      </Router>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { courses: state.courses, loading: state.loading, session: state.session, user: state.user}
+  return { courses: state.courses, loading: state.loading, user: state.user}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCourses: (session) => dispatch(fetchCourses(session)),
-    createUser: (user) => dispatch(createUser(user)),
-    fetchSession: (session) => dispatch(fetchSession(session))
+    fetchCourses: () => dispatch(fetchCourses()),
+    fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
+    fetchUser: (userId) => dispatch(fetchUser(userId))
   }
 }
 

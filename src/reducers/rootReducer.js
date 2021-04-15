@@ -1,4 +1,4 @@
-const rootReducer = (state = { courses: [], loading: false, session: 'logged_out', user: null }, action) => {
+const rootReducer = (state = { courses: [], loading: false, user: null }, action ) => {
     switch(action.type) {
         case 'LOADING_COURSES':
             return {
@@ -8,22 +8,37 @@ const rootReducer = (state = { courses: [], loading: false, session: 'logged_out
             }
 
         case 'CHANGE_COURSES':
-        return {
+            return {
                 ...state,
                 courses: action.courses,
                 loading: false
             }
 
-        case 'LOADING_SESSION':
+        case 'LOADING_TEACHER':
             return {
                 ...state,
-                loading: true
+                loading: true,
+                user: null
             }
 
-        case 'CHANGE_SESSION':
-        return {
+        case 'CHANGE_TEACHER':
+            console.log(action)
+            return {
                 ...state, 
-                session: action.session,
+                loading: false,
+                user: action.teacher
+            }
+
+        case 'LOADING_USER':
+            return {
+                ...state,
+                loading: true,
+                user: false
+            }
+
+        case 'CHANGE_USER':
+            return {
+                ...state, 
                 loading: false,
                 user: action.user
             }

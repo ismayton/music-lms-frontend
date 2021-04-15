@@ -4,7 +4,9 @@ import Course from '../components/Course';
 
 export default class CoursesContaner extends Component { 
     renderCourses() {
-        return this.props.courses.map( course => <Course course={course}/> )
+        if (this.props.courses.length > 0) {
+            return this.props.courses.map( course => <Course course={course}/> )
+        }
     }
 
     render() {
