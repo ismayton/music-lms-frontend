@@ -7,7 +7,7 @@ function createUser(user) {
 
     return(dispatch) => {
         dispatch({ type: "LOADING_USER" })
-        fetch('http://127.0.0.1:3000/api/v1/users', configObj )
+        fetch('http://127.0.0.1:3001/api/v1/users', configObj )
         .then(response => response.json())
         .then(json => { 
             console.log(json) 

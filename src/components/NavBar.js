@@ -17,8 +17,10 @@ export default class NavBar extends Component {
                 <h4>Session</h4>
                 <ul>
                     {this.renderButton(<NavLink to="/">Home</NavLink>)}
-                    {this.renderButton(<NavLink to="/users">Users</NavLink>)}
-                    {this.renderButton(<NavLink to="/teachers">Teachers</NavLink>)}
+                    {this.renderButton(<NavLink to="/login">Log In</NavLink>)}
+                    {this.renderButton(<NavLink to="/signup">Sign Up</NavLink>)}
+                    {/* {this.renderButton(<NavLink to="/users">Users</NavLink>)}
+                    {this.renderButton(<NavLink to="/teachers">Teachers</NavLink>)} */}
                 </ul>
             </div>
         ); 

@@ -22,7 +22,6 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
             }
 
         case 'CHANGE_TEACHER':
-            console.log(action)
             return {
                 ...state, 
                 loading: false,
