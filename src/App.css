@@ -85,24 +85,25 @@ input {
 /* COURSE */
 .course {
   margin: 0px 150px 50px 0px;
+  float: none;
   clear: both;
   border: 1px black solid;
   height: inherit;
+  height: 500px;
 }
 
 /* COURSE NAV BAR */
 .course-nav {
-  border: 1px black solid;
   float: left;
-  width: 200px;
+  width: 150px;
   margin: auto;
   margin-bottom: 15px;
+  /* create scroll effect */
 }
 
 .course-nav ul {
   list-style-type: none;
   padding: 15px 0px;
-  width: 200px;
 }
 
 /* STYLING FOR NavLink OBJECTS */
@@ -128,8 +129,8 @@ a:link, a:visited {
 }
 
 .lesson .video {
-  height: 360px;
-  width: 640px;
+  height: 240px;
+  width: 426px;
 }
 
 .blurb, .dashboard {

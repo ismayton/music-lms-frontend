@@ -9,7 +9,6 @@ export default class NavBar extends Component {
                 <NavLink to='/signup'><button>Sign Up</button></NavLink>
             </div>
         } else {
-            // WHAT ROUTES DO WE NEED? NEW CONTAINERS //
             return <div>
                 <NavLink to='/all-courses'><button>All Courses</button></NavLink>
                 <NavLink to='/my-courses'><button>My Courses</button></NavLink>
@@ -21,7 +20,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <div className="session">
-                <h4>Session</h4>
+                {/* <h4>Session</h4> */}
                 <ul>
                     <NavLink to='/'><button>Home</button></NavLink>
                     {this.renderNav()}
