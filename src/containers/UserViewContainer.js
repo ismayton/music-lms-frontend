@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CoursesContainer from './CoursesContainer';
-import UserDashboard from '../components/UserDashboard';
+// import CoursesContainer from './CoursesContainer';
+// import UserDashboard from '../components/UserDashboard';
 
 export default class UserViewContainer extends Component { 
     componentDidMount() {

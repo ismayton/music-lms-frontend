@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-export default class LoginForm extends Component {
+
+export default class LoginForm extends Component {    
     state = {
         username: "",
         password: ""
@@ -17,21 +18,7 @@ export default class LoginForm extends Component {
     handleSubmit = event => {
         event.preventDefault()
         let user = {user: {username: this.state.username, password: this.state.password}}
-        
-        let configObj = {
-            method: 'POST',
-            headers:  {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(user)
-        }
-
-        fetch('http://127.0.0.1:3001/api/v1/login', configObj)
-        .then(response => response.json())
-        .then(json => console.log(json))
-        
-        this.props.handleLogin(user)
+        this.props.loginUser(user)
         this.setState({
             username: "",
             password: ""
@@ -39,6 +26,9 @@ export default class LoginForm extends Component {
     }
 
     render() {
+        if (this.props.user) {
+            return <Redirect from="/login" to="/" exact />
+        }
         return (
             <div>
                 <h1>Log in to your Account</h1>

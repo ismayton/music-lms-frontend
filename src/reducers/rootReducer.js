@@ -18,7 +18,6 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
             return {
                 ...state,
                 loading: true,
-                user: null
             }
 
         case 'CHANGE_TEACHER':
@@ -32,7 +31,6 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
             return {
                 ...state,
                 loading: true,
-                user: false
             }
 
         case 'CHANGE_USER':
@@ -40,6 +38,25 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 ...state, 
                 loading: false,
                 user: action.user
+            }
+
+        case 'LOADING_LOGIN':
+            return {
+                ...state, 
+                loading: true,
+            }
+
+        case 'CHANGE_LOGIN':
+            return {
+                ...state,
+                loading: false,
+                user: action.user
+            }
+
+        case "LOGOUT":
+            return {
+                ...state,
+                user: null
             }
             
         default: return state;

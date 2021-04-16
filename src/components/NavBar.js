@@ -3,16 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 export default class NavBar extends Component {
     renderNav() {
-        if (!this.props.logged_in) {
+        if (!this.props.user) {
             return <div>
                 <NavLink to='/login'><button>Log In</button></NavLink>
                 <NavLink to='/signup'><button>Sign Up</button></NavLink>
             </div>
         } else {
+            // WHAT ROUTES DO WE NEED? NEW CONTAINERS //
             return <div>
-                // WHAT ROUTES DO WE NEED? NEW CONTAINERS //
-                <NavLink to='/users'><button>Users</button></NavLink>
-                <NavLink to='/teachers'><button>Teachers</button></NavLink>
+                <NavLink to='/all-courses'><button>All Courses</button></NavLink>
+                <NavLink to='/my-courses'><button>My Courses</button></NavLink>
+                <NavLink to='/logout'><button>Log Out</button></NavLink>
             </div>
         }
     }

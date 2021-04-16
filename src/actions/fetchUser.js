@@ -9,7 +9,7 @@ export default function fetchUser(userId) {
         .then(user => { 
             dispatch({ 
                 type: 'CHANGE_USER', 
-                user
+                user: user
             }) 
         })
     }
