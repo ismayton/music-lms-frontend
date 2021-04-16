@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default class NavBar extends Component {
-    
-    sessionTypes = ['user', 'teacher', 'logged out']
-
-    renderButton = (navLink) => {
-        return <li>
-                <button>{navLink}</button>
-            </li>
+    renderNav() {
+        if (!this.props.logged_in) {
+            return <div>
+                <NavLink to='/login'><button>Log In</button></NavLink>
+                <NavLink to='/signup'><button>Sign Up</button></NavLink>
+            </div>
+        } else {
+            return <div>
+                <NavLink to='/users'><button>Users</button></NavLink>
+                <NavLink to='/teachers'><button>Teachers</button></NavLink>
+            </div>
+        }
     }
 
     render() {
@@ -16,15 +21,11 @@ export default class NavBar extends Component {
             <div className="session">
                 <h4>Session</h4>
                 <ul>
-                    {this.renderButton(<NavLink to="/">Home</NavLink>)}
-                    {this.renderButton(<NavLink to="/login">Log In</NavLink>)}
-                    {this.renderButton(<NavLink to="/signup">Sign Up</NavLink>)}
-                    {/* {this.renderButton(<NavLink to="/users">Users</NavLink>)}
-                    {this.renderButton(<NavLink to="/teachers">Teachers</NavLink>)} */}
+                    <NavLink to='/'><button>Home</button></NavLink>
+                    {this.renderNav()}
                 </ul>
             </div>
         ); 
     }
-    
 };
 

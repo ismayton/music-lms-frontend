@@ -50,13 +50,17 @@ class App extends Component {
     .then(response => {
       if (response.logged_in) {
         this.handleLogin(response)
+        this.redirect()
       } else {
         this.handleLogout()
       }
-  })
-
+    })
     .catch(error => console.log('api errors:', error))
   };
+
+  redirect = () => {
+    this.props.history.push('/')
+  }
 
   componentDidMount() {
     this.loginStatus()
@@ -70,7 +74,7 @@ class App extends Component {
       return <h4>Logged out...</h4>
     }
   }
-  
+
   render() {
     return (
       <Router >
@@ -95,7 +99,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { courses: state.courses, loading: state.loading, user: state.user}
+  return { courses: state.courses, loading: state.loading, user: state.user }
 }
 
 const mapDispatchToProps = dispatch => {
