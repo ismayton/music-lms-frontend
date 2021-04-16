@@ -98,7 +98,9 @@ input {
   width: 150px;
   margin: auto;
   margin-bottom: 15px;
-  /* create scroll effect */
+  padding: 0px 5px 0px 5px;
+  overflow: scroll;
+  height: 400px;
 }
 
 .course-nav ul {
