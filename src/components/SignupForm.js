@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class SignUpForm extends Component {
     state = {
@@ -42,7 +43,10 @@ export default class SignUpForm extends Component {
                         value={this.state.password} 
                         onChange={event => this.handleChange(event)} 
                     />
-                    <input type="submit" />
+                    <button type="submit">Submit</button>
+                    <div>
+                        or <br/><Link to="/login"><button>Log In</button></Link>
+                    </div>
                 </form>
             </div>
         )

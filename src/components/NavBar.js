@@ -10,6 +10,7 @@ export default class NavBar extends Component {
             </div>
         } else {
             return <div>
+                // WHAT ROUTES DO WE NEED? NEW CONTAINERS //
                 <NavLink to='/users'><button>Users</button></NavLink>
                 <NavLink to='/teachers'><button>Teachers</button></NavLink>
             </div>

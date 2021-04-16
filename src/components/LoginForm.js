@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class LoginForm extends Component {
     state = {
@@ -15,21 +16,20 @@ export default class LoginForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        let user = {username: this.state.username, password: this.state.password}
-          
-        fetch('http://127.0.0.1:3001/api/v1/login', {user}, {withCredentials: true})
-        .then(response => {
-            if (response.logged_in) {
-                this.props.handleLogin(response)
-                this.redirect()
-            } else {
-              this.setState({
-                errors: response.errors
-              })
-            }
-        })
+        let user = {user: {username: this.state.username, password: this.state.password}}
+        
+        let configObj = {
+            method: 'POST',
+            headers:  {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(user)
+        }
 
-        .catch(error => console.log('api errors:', error))
+        fetch('http://127.0.0.1:3001/api/v1/login', configObj)
+        .then(response => response.json())
+        .then(json => console.log(json))
         
         this.props.handleLogin(user)
         this.setState({
@@ -57,7 +57,10 @@ export default class LoginForm extends Component {
                         value={this.state.password} 
                         onChange={event => this.handleChange(event)} 
                     />
-                    <input type="submit" />
+                    <button type="submit">Submit</button><br/>
+                    <div>
+                        or <br/><Link to="/signup"><button>Sign Up</button></Link>
+                    </div>
                 </form>
             </div>
         )

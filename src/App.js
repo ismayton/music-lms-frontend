@@ -46,10 +46,12 @@ class App extends Component {
   }
 
   loginStatus = () => {
-    fetch('http://127.0.0.1:3001/api/v1/logged_in', {withCredentials: true})    
-    .then(response => {
-      if (response.logged_in) {
-        this.handleLogin(response)
+    fetch('http://127.0.0.1:3001/api/v1/logged_in')    
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+      if (json.logged_in) {
+        this.handleLogin(json)
         this.redirect()
       } else {
         this.handleLogout()
@@ -69,7 +71,12 @@ class App extends Component {
 
   renderSessionStatus = () => {
     if (this.state.isLoggedIn) {
-      return <h4>Logged In!</h4>
+      console.log(this.state.user)
+      return <div>
+          <h4>Logged In!</h4>
+          {/* <h4>Welcome, {this.props.user.username}</h4> */}
+        </div>
+
     } else {
       return <h4>Logged out...</h4>
     }

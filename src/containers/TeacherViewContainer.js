@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CoursesContainer from './CoursesContainer';
-import TeacherDashboard from '../components/TeacherDashboard';
+// import CoursesContainer from './CoursesContainer';
+// import TeacherDashboard from '../components/TeacherDashboard';
 
 export default class TeacherViewContainer extends Component { 
     
