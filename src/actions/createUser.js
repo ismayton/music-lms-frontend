@@ -11,6 +11,12 @@ function createUser(user) {
         .then(response => response.json())
         .then(json => { 
             console.log(json) 
+            if (json.user) {
+                dispatch({ 
+                    type: 'CHANGE_LOGIN', 
+                    user: json
+                }) 
+            }  
             // add user to session hash (find secure session methods)
         }) 
     }

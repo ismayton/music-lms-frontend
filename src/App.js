@@ -5,10 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // CONTAINERS
 import CoursesContainer from './containers/CoursesContainer';
-// import LoginContainer from './containers/LoginContainer';
-// import TeacherViewContainer from './containers/TeacherViewContainer';
-// import UserViewContainer from './containers/UserViewContainer';
-// import LoggedOutViewContainer from './containers/LoggedOutViewContainer';
 
 // COMPONENTS 
 import NavBar from './components/NavBar';
@@ -18,10 +14,10 @@ import Logout from './components/Logout'
 
 //ACTIONS
 import createUser from './actions/createUser';
-import fetchUser from './actions/fetchUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
+import fetchUser from './actions/fetchUser';
 import fetchTeacher from './actions/fetchTeacher';
 
 class App extends Component {
@@ -60,10 +56,11 @@ class App extends Component {
 
   renderSessionStatus = () => {
     if (this.props.user) {
+      let user = this.props.user
       return <div>
           <h4>Logged In!</h4>
-          <h4>Welcome, {this.props.user.username}</h4>
-          <p>You are enrolled in {this.props.user.courses.length} Courses</p>
+          <h4>Welcome, {user.username}</h4>
+          <p>You are enrolled in {user.courses ? user.courses.length : 0} Courses</p>
         </div>
     } else {
       return <h4>Logged out...</h4>
@@ -80,9 +77,9 @@ class App extends Component {
             <NavBar {...this.props} />
           </header>
           <body>
-            <Route exact path="/" render={() => (<CoursesContainer courses={this.props.courses}/>)} />
+            <Route exact path="/" render={() => (<CoursesContainer courses={this.props.courses} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
-            <Route exact path="/signup" render={() => (<SignupForm {...this.props}/>)} />
+            <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
             <Route path="/all-courses" render={() => (<CoursesContainer courses={this.props.courses} />)} />
             <Route path="/my-courses" render={() => (<CoursesContainer courses={this.props.user.courses} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>
@@ -99,11 +96,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createUser: (credentials) => dispatch(createUser(credentials)),
+    createUser: (user) => dispatch(createUser(user)),
     loginUser: (user) => dispatch(loginUser(user)),
-    fetchUser: (userId) => dispatch(fetchUser(userId)),
     logoutUser: () => dispatch(logoutUser()),
     fetchCourses: () => dispatch(fetchCourses()),
+    // not needed? //
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
     fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
   }
 }
