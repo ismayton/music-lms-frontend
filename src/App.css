@@ -84,12 +84,11 @@ input {
 
 /* COURSE */
 .course {
-  margin: 0px 150px 50px 0px;
+  margin: 50px 150px 50px 0px;
   float: none;
   clear: both;
-  border: 1px black solid;
-  height: inherit;
-  height: 500px;
+  min-height: 100px;
+  height: auto;
 }
 
 /* COURSE NAV BAR */

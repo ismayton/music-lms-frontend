@@ -17,8 +17,8 @@ import createUser from './actions/createUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
-import fetchUser from './actions/fetchUser';
-import fetchTeacher from './actions/fetchTeacher';
+// import fetchUser from './actions/fetchUser';
+// import fetchTeacher from './actions/fetchTeacher';
 
 class App extends Component {
   constructor(props) {
@@ -77,11 +77,11 @@ class App extends Component {
             <NavBar {...this.props} />
           </header>
           <body>
-            <Route exact path="/" render={() => (<CoursesContainer courses={this.props.courses} />)} />
+            <Route exact path="/" render={() => (<CoursesContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
-            <Route path="/all-courses" render={() => (<CoursesContainer courses={this.props.courses} />)} />
-            <Route path="/my-courses" render={() => (<CoursesContainer courses={this.props.user.courses} />)} />
+            <Route path="/all-courses" render={() => (<CoursesContainer {...this.props} />)} />
+            <Route path="/my-courses" render={() => (<CoursesContainer {...this.props} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>
           </body>
         </div>
@@ -101,8 +101,8 @@ const mapDispatchToProps = dispatch => {
     logoutUser: () => dispatch(logoutUser()),
     fetchCourses: () => dispatch(fetchCourses()),
     // not needed? //
-    fetchUser: (userId) => dispatch(fetchUser(userId)),
-    fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
+    // fetchUser: (userId) => dispatch(fetchUser(userId)),
+    // fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
   }
 }
 
