@@ -29,10 +29,8 @@ export default class Course extends Component {
 
     // HANDLE SUBSCRIPTION CHANGES //
     subscribed() {
-        console.log("cant be subscribed if you're logged out!")
-        if (this.props.user) {
-            console.log(`User ${this.props.user.id} subscribed to ${this.props.course.id}: ` + !!this.props.user.subscriptions.filter(course => course.id === this.props.course.id))
-            return !!this.props.user.subscriptions.filter(course => course.id === this.props.course.id)
+        if (this.props.user && this.props.user.subscriptions.length > 0) {
+            return this.props.user.courses.some(course => course.id === this.props.course.id)
         } else {
             return false
         }

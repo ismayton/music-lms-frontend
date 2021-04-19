@@ -15,12 +15,10 @@ export default function deleteSubscription(subId, userId) {
         fetch(url, configObj)
         .then(response => response.json())
         .then(json => {
-                if (json.user) {
-                    dispatch({ 
-                        type: 'UPDATE_SESSION', 
-                        user: json
-                    })
-                }
+                dispatch({ 
+                    type: 'UPDATE_SUBSCRIPTIONS', 
+                    user: json
+                })
             }      
         )
     }

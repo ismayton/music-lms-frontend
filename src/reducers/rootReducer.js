@@ -57,6 +57,13 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 loading: true
             }
 
+        case "UPDATE_SUBSCRIPTIONS":
+            console.log(action)
+            return {
+                ...state,
+                user: action.user
+            }
+
         default: return state;
     }
 }
