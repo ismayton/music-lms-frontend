@@ -8,19 +8,11 @@ export default class Course extends Component {
         super();
         this.state = {
             showHideLessons: false,
-            shownLessons: props.course.lessons,
+            shownLessons: props.course.lessons
         }
     }
 
-    renderSubscribeButton = () => {
-        console.log(this.props.subscribed)
-        if (this.props.subscribed) {
-            return <button>Unsubscribe</button>
-        } else {
-            return <button>Subscribe</button> 
-        }
-    }
-
+    // SHOW AND HIDE LESSONS //
     showAllLessons = event => {
         this.setState({
             showHideLessons: !this.state.showHideLessons,
@@ -34,7 +26,29 @@ export default class Course extends Component {
             shownLessons: [this.props.course.lessons[event.target.id]]
         })
     }
+
+    // HANDLE SUBSCRIPTION CHANGES //
+    subscribed() {
+        console.log("cant be subscribed if you're logged out!")
+        if (this.props.user) {
+            console.log(`User ${this.props.user.id} subscribed to ${this.props.course.id}: ` + !!this.props.user.subscriptions.filter(course => course.id === this.props.course.id))
+            return !!this.props.user.subscriptions.filter(course => course.id === this.props.course.id)
+        } else {
+            return false
+        }
+    }
     
+    renderSubscribeButton = () => {
+        if (this.subscribed()) {
+            let sub = this.props.user.subscriptions.find(userSub => userSub.course_id === this.props.course.id)
+            return <button onClick={() => this.props.deleteSubscription(sub.id, this.props.user.id)}>Unsubscribe</button>
+        }
+         else {
+            return <button onClick={() => this.props.createSubscription(this.props.user.id, this.props.course.id)}>Subscribe</button> 
+        }
+    }
+    
+    // CONDITIONAL RENDERING OF COURSE //
     renderSubscribedCourse = () => {
         return <div className="course">
             <h1>{this.props.course.title}</h1>
@@ -65,12 +79,12 @@ export default class Course extends Component {
     }
 
     render() {
-        if (this.props.subscribed) {
+        if (this.subscribed()) {
             return <>{this.renderSubscribedCourse()}</>
         } else if (this.props.user) {
                 return <>{this.renderUnsubscribedCourse()}</>
         } else {
-            return <div>{this.renderLoggedOut()}</div>
+            return <>{this.renderLoggedOut()}</>
         }
     }
 }

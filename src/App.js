@@ -17,6 +17,8 @@ import createUser from './actions/createUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
+import createSubscription from './actions/createSubscription'
+import deleteSubscription from './actions/deleteSubscription'
 // import fetchUser from './actions/fetchUser';
 // import fetchTeacher from './actions/fetchTeacher';
 
@@ -43,11 +45,6 @@ class App extends Component {
     })
     .catch(error => console.log('api errors:', error))
   };
-
-  // handleLogout() {
-  //   this.props.logoutUser()
-  //   return <Redirect from="/logout" to="/" exact />
-  // }
 
   componentDidMount() {
     this.loginStatus()
@@ -100,6 +97,8 @@ const mapDispatchToProps = dispatch => {
     loginUser: (user) => dispatch(loginUser(user)),
     logoutUser: () => dispatch(logoutUser()),
     fetchCourses: () => dispatch(fetchCourses()),
+    createSubscription: (userId, courseId) => dispatch(createSubscription(userId, courseId)),
+    deleteSubscription: (subId, userId) => dispatch(deleteSubscription(subId, userId))
     // not needed? //
     // fetchUser: (userId) => dispatch(fetchUser(userId)),
     // fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),

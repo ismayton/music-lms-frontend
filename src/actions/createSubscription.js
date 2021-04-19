@@ -1,5 +1,5 @@
-export default function loginUser(user) {  
-    let url = 'http://127.0.0.1:3001/api/v1/login'
+export default function createSubscription(userId, courseId) {  
+    let url = `http://127.0.0.1:3001/api/v1/subscriptions`
 
     let configObj = {
         method: 'POST',
@@ -7,11 +7,11 @@ export default function loginUser(user) {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({user_id: userId, course_id: courseId})
     }
 
     return(dispatch) => {      
-        dispatch({ type: "LOADING_SESSION" })
+        dispatch({ type: "LOADING_SUBSCRIPTION" })
         fetch(url, configObj)
         .then(response => response.json())
         .then(json => {

@@ -1,5 +1,6 @@
 const rootReducer = (state = { courses: [], loading: false, user: null }, action ) => {
     switch(action.type) {
+        // COURSES //
         case 'LOADING_COURSES':
             return {
                 ...state,
@@ -14,6 +15,7 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 loading: false
             }
 
+        // TEACHER //
         case 'LOADING_TEACHER':
             return {
                 ...state,
@@ -27,28 +29,17 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 user: action.teacher
             }
 
-        case 'LOADING_USER':
+        // SESSION //
+        case 'LOADING_SESSION':
             return {
                 ...state,
-                loading: true,
+                loading: true
             }
 
-        case 'CHANGE_USER':
+        case 'UPDATE_SESSION':
+            console.log(action.user)
             return {
                 ...state, 
-                loading: false,
-                user: action.user
-            }
-
-        case 'LOADING_LOGIN':
-            return {
-                ...state, 
-                loading: true,
-            }
-
-        case 'CHANGE_LOGIN':
-            return {
-                ...state,
                 loading: false,
                 user: action.user
             }
@@ -58,7 +49,14 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 ...state,
                 user: null
             }
-            
+ 
+        // SUBSCRIPTION //
+        case "LOADING_SUBSCRIPTION":
+            return {
+                ...state,
+                loading: true
+            }
+
         default: return state;
     }
 }
