@@ -39,27 +39,30 @@ export default class Course extends Component {
     renderSubscribeButton = () => {
         if (this.subscribed()) {
             let sub = this.props.user.subscriptions.find(userSub => userSub.course_id === this.props.course.id)
-            return <button onClick={() => this.props.deleteSubscription(sub.id, this.props.user.id)}>Unsubscribe</button>
+            return <button class="unsubscribe" onClick={() => this.props.deleteSubscription(sub.id, this.props.user.id)}>Unsubscribe</button>
         }
          else {
-            return <button onClick={() => this.props.createSubscription(this.props.user.id, this.props.course.id)}>Subscribe</button> 
+            return <button class="subscribe" onClick={() => this.props.createSubscription(this.props.user.id, this.props.course.id)}>Subscribe</button> 
         }
     }
     
     // CONDITIONAL RENDERING OF COURSE //
     renderSubscribedCourse = () => {
         return <div className="course">
+            <div className="course sidebar">
+                {this.renderSubscribeButton()}
+                <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
+            </div>
             <h1>{this.props.course.title}</h1>
-            {this.renderSubscribeButton()}
-            <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
             { this.state.showHideLessons ? <LessonsContainer lessons={this.state.shownLessons} /> : null }
         </div>
     }
 
     renderUnsubscribedCourse = () => {
         return <div className="course">
+            
+            <div className="course sidebar">{this.renderSubscribeButton()}</div>
             <h1>{this.props.course.title}</h1>
-            {this.renderSubscribeButton()}
             {/* <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
             { this.state.showHideLessons ? <LessonsContainer lessons={this.state.shownLessons} /> : null } */}
         </div>
@@ -69,9 +72,9 @@ export default class Course extends Component {
         return <div className="course">
             <h1>{this.props.course.title}</h1>
             <span>To view this course,
-                <Link to="/signup"><button>Sign Up</button></Link>
-                or
                 <Link to="/login"><button>Log In</button></Link>
+                or
+                <Link to="/signup"><button>Sign Up</button></Link>
             </span>
         </div>
     }

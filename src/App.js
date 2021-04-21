@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CoursesContainer from './containers/CoursesContainer';
 
 // COMPONENTS 
-import NavBar from './components/NavBar';
+import SessionNavBar from './components/SessionNavBar';
+import MainNavBar from './components/MainNavBar'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Logout from './components/Logout'
@@ -51,28 +52,19 @@ class App extends Component {
     this.props.fetchCourses()
   }
 
-  renderSessionStatus = () => {
-    if (this.props.user) {
-      let user = this.props.user
-      return <div>
-          <h4>Logged In!</h4>
-          <h4>Welcome, {user.username}</h4>
-          <p>You are enrolled in {user.courses ? user.courses.length : 0} Courses</p>
-        </div>
-    } else {
-      return <h4>Logged out...</h4>
-    }
-  }
+  
 
   render() {
     return (
       <Router >
         <div className="App">
           <header className="App-header">
-            <h1>Music LMS App</h1>
-            {this.renderSessionStatus()}
-            <NavBar {...this.props} />
+            <h1 style={{marginBottom: '15px'}}>Horn Hippie</h1>
+            <h2 style={{marginTop: '0px'}}>Tech Retreat</h2>
+            <SessionNavBar {...this.props} />
+            
           </header>
+          <MainNavBar {...this.props} />
           <body>
             <Route exact path="/" render={() => (<CoursesContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />

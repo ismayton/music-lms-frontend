@@ -15,6 +15,7 @@ export default function createSubscription(userId, courseId) {
         fetch(url, configObj)
         .then(response => response.json())
         .then(json => {
+                console.log(json)
                 dispatch({ 
                     type: 'UPDATE_SESSION', 
                     user: json

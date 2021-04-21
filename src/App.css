@@ -1,3 +1,28 @@
+:root {
+  --background-color: #111228;
+  --border-color: #ccc;
+}
+
+/* FONTS */
+@font-face {
+  font-family: "Dosis";
+  src: local("Dosis-Light"),
+    url("./fonts/Dosis-Light.ttf") format("truetype");
+  font-weight: normal;
+}
+
+H1, H2, H3, H4, H5 {
+  font-family: Dosis;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 4px;
+}
+
+p, div, span {
+  font-family: Dosis;
+  font-size: 17px;
+}
+
 .App {
   text-align: center;
 }
@@ -7,15 +32,8 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  /* min-height: 100vh; */
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,47 +42,26 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* CUSTOM CODE STARTS HERE */
-
-/* GENERAL */
-button {
-  padding: 8px 16px;
-  text-decoration: none;
-  min-width: 100px;
-  margin: 5px;
+body {
+  background-color: #DAE0E6;
 }
 
 input {
-  padding: 8px 16px;
-  text-decoration: none;
-  margin: 5px;
-}
-/* SESSION NAV BAR */
-.session {
-  position: fixed;
-  right: 0;
-  top: 0;
-  background-color: #282c34;
+  border: solid .25px;
+  border-radius: 4px;
 }
 
-.session ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 15px 0px;
-  width: 150px;
+/* BUTTONS */
+button {
+  font-family: Dosis;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  text-decoration: none;
+  min-width: 75px;
+  margin: 5px;
+  border: solid .25px;
+  border-radius: 4px;
 }
 
 #user.selected {
@@ -82,30 +79,97 @@ input {
   color: white; 
 }
 
+/* SUBSCRIBE AND UNSUBSCRIBE STYLING */
+.subscribe {
+  background-color: blue;
+  color: white;
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+.unsubscribe {
+  background-color: red;
+  color: white; 
+  width: 90%;
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 5px;
+}
+
+/* NAVIGATION */
+
+/* MAIN NAV BAR */
+.nav {
+  background-color: var(--background-color);
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 5px;
+}
+
+.nav.main {
+  width: 100%;
+  z-index: 0;
+  margin-bottom: 50px;
+}
+
+/* SESSION NAV BAR */
+.nav.session {
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: inherit;
+  width: 150px;
+  z-index: 1;
+}
+
+.session ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 15px 0px;
+  width: 150px;
+}
+
 /* COURSE */
 .course {
-  margin: 50px auto 50px auto;
+  display: block;
+  overflow: auto;
+  margin: 8px 175px 8px 15px;
+  padding: 5px 25px 5px 5px;
   clear: both;
-  min-height: 150px;
-  width: 80%;
+  /* min-height: 150px; */
+  /* width: 80%; */
   max-width: 800px;
+  background-color: white;
+  border: var(--border-color) 1px solid;
+  border-radius: 4px;
+}
+
+.course.sidebar {
+  float: left;
+  width: 150px;
+  margin: 22.78px 25px 5px 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
 }
 
 /* COURSE NAV BAR */
 .course-nav {
-  float: left;
-  width: 150px;
-  margin: auto;
-  margin-bottom: 15px;
-  padding: 0px 5px 0px 5px;
   overflow: scroll;
   height: 400px;
-  border: black 1px solid;
 }
 
 .course-nav ul {
   list-style-type: none;
-  padding: 15px 0px;
+  padding: 5px;
+}
+
+.course-nav ul button {
+  width: 90%;
 }
 
 /* STYLING FOR NavLink OBJECTS */
@@ -118,16 +182,15 @@ a:link, a:visited {
 /* LESSONS STYLING */
 .lessons {
   margin: auto;
-  margin-left: 200px;
-  margin-bottom: 100px;
+  padding: 5px;
 }
+
 /* LESSON STYLING */
 .lesson {
-  margin-bottom: 50px;
+  /* padding: 50px; */
 }
 
 .lesson .content {
-  padding: 0 50px 0 50px;
 }
 
 .lesson .video {

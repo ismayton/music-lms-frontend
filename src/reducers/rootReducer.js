@@ -37,7 +37,6 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
             }
 
         case 'UPDATE_SESSION':
-            console.log(action.user)
             return {
                 ...state, 
                 loading: false,
@@ -58,12 +57,17 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
             }
 
         case "UPDATE_SUBSCRIPTIONS":
-            console.log(action)
             return {
                 ...state,
                 user: action.user
             }
 
+        case "RENDER_ERROR":
+            return {
+                ...state,
+                error: action.error
+            }
+            
         default: return state;
     }
 }
