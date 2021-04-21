@@ -25,6 +25,7 @@ import deleteSubscription from './actions/deleteSubscription'
 
 //BRANDING
 import logo from './images/hornhippie_logo_primary.png'
+import icon from './images/hornhippie_icon_teal CIRCULAR.png'
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends Component {
       <Router >
         <div className="App">
           <header className="App-header">
+          <img src={icon} class="App-icon" alt="Horn Hippie Icon"/>
             <img src={logo} class="App-logo" alt="Horn Hippie Logo"/>
             <h2 style={{marginTop: '10px'}}>Academy</h2>
             <SessionNavBar {...this.props} />

@@ -6,7 +6,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import App from './App';
 import rootReducer from './reducers/rootReducer'
-import './fonts/Dosis-Light.ttf'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
