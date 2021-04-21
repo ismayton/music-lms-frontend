@@ -114,6 +114,14 @@ button {
   margin-bottom: 15px;
 }
 
+.course-count {
+  display: block;
+  width: 15px;
+  line-height: 1;
+  padding: 1px;
+  border-radius: 100%;
+  border: black 1px solid;
+}
 input {
   padding: 8px 16px;
   text-decoration: none;
