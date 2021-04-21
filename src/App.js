@@ -23,6 +23,9 @@ import deleteSubscription from './actions/deleteSubscription'
 // import fetchUser from './actions/fetchUser';
 // import fetchTeacher from './actions/fetchTeacher';
 
+//BRANDING
+import logo from './images/hornhippie_logo_primary.png'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -59,12 +62,14 @@ class App extends Component {
       <Router >
         <div className="App">
           <header className="App-header">
-            <h1 style={{marginBottom: '15px'}}>Horn Hippie</h1>
-            <h2 style={{marginTop: '0px'}}>Tech Retreat</h2>
+            <img src={logo} class="App-logo" alt="Horn Hippie Logo"/>
+            <h2 style={{marginTop: '10px'}}>Academy</h2>
             <SessionNavBar {...this.props} />
-            
           </header>
-          <MainNavBar {...this.props} />
+          <div className="nav main">
+            
+            <MainNavBar {...this.props} />
+          </div>
           <body>
             <Route exact path="/" render={() => (<CoursesContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
