@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import LessonsContainer from '../containers/LessonsContainer'
-import CourseTOC from './CourseTOC'
+import { connect } from 'react-redux';
+
+// COMPONENTS //
+import LessonsContainer from '../containers/LessonsContainer';
+import CourseTOC from './CourseTOC';
 import { Link } from 'react-router-dom';
 
-export default class Course extends Component {
+// ACTIONS //
+// import createSubscription from '../actions/createSubscription';
+// import deleteSubscription from '../actions/deleteSubscription';
+import updateSubscription from '../actions/updateSubscription';
+
+class Course extends Component {
     constructor(props) {
         super();
         this.state = {
@@ -20,14 +28,20 @@ export default class Course extends Component {
         })
     }
 
-    showOneLesson = event => {
+    showOneLesson = lessonId => {
+        console.log(lessonId)
+        let shownLesson = this.props.course.lessons.find(lesson => lesson.id === lessonId)
+        console.log(shownLesson)
         this.setState({
             showHideLessons: true,
-            shownLessons: [this.props.course.lessons[event.target.id]]
+            shownLessons: [shownLesson]
         })
+
     }
 
     // HANDLE SUBSCRIPTION CHANGES //
+    // I SHOULD FIND A WAY TO GET AROUND HAVING TO CHECK THIS, JUST PASS THE COURSES I SHOULD RENDER //
+    // MY COURSES SHOULD RENDER A USER VIEW WITH A COURSES CONTAINER THAT ONLY HAS SUBSCRIBED COURSES //
     subscribed() {
         if (this.props.user && this.props.user.subscriptions.length > 0) {
             return this.props.user.courses.some(course => course.id === this.props.course.id)
@@ -36,9 +50,13 @@ export default class Course extends Component {
         }
     }
     
+    subscription = () => {
+        return this.props.user.subscriptions.find(userSub => userSub.course_id === this.props.course.id)
+    }
+
     renderSubscribeButton = () => {
         if (this.subscribed()) {
-            let sub = this.props.user.subscriptions.find(userSub => userSub.course_id === this.props.course.id)
+            let sub = this.subscription()
             return <button class="unsubscribe" onClick={() => this.props.deleteSubscription(sub.id, this.props.user.id)}>Unsubscribe</button>
         }
          else {
@@ -46,15 +64,38 @@ export default class Course extends Component {
         }
     }
     
+    handleLessonProgress = (lessonId) => {
+        let sub = this.subscription()
+        this.props.updateSubscription(lessonId, sub.id)
+        this.showOneLesson(lessonId + 1)
+    }
+
+    courseProgress = (courseId) => {
+        let sub = this.props.user.subscriptions.find(sub => sub.course_id === courseId )
+        if (sub) {
+            return sub.lesson_statuses
+        }
+    }
+
     // CONDITIONAL RENDERING OF COURSE //
     renderSubscribedCourse = () => {
         return <div className="course">
             <div className="course sidebar">
                 {this.renderSubscribeButton()}
-                <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
+                <CourseTOC 
+                    lessons={this.props.course.lessons} 
+                    progress={this.courseProgress(this.props.course.id)} 
+                    showAllLessons={this.showAllLessons} 
+                    hiddenOrShown={this.state.showHideLessons} 
+                    showOneLesson={this.showOneLesson}
+                    />
             </div>
             <h1>{this.props.course.title}</h1>
-            { this.state.showHideLessons ? <LessonsContainer lessons={this.state.shownLessons} /> : null }
+            { this.state.showHideLessons ? <LessonsContainer 
+                lessons={this.state.shownLessons} 
+                showOneLesson={this.showOneLesson} 
+                handleLessonProgress={this.handleLessonProgress}
+                /> : null }
         </div>
     }
 
@@ -89,3 +130,21 @@ export default class Course extends Component {
         }
     }
 }
+
+const mapStateToProps = state => {
+    return { user: state.user }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+    //   createUser: (user) => dispatch(createUser(user)),
+    //   loginUser: (user) => dispatch(loginUser(user)),
+    //   logoutUser: () => dispatch(logoutUser()),
+    //   fetchCourses: () => dispatch(fetchCourses()),
+    //   createSubscription: (userId, courseId) => dispatch(createSubscription(userId, courseId)),
+    //   deleteSubscription: (subId, userId) => dispatch(deleteSubscription(subId, userId)),
+    updateSubscription: (lessonId, subId) => dispatch(updateSubscription(lessonId, subId))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Course)

@@ -62,6 +62,15 @@ const rootReducer = (state = { courses: [], loading: false, user: null }, action
                 user: action.user
             }
 
+        // LESSON PROGRESS (dispatched from course) //
+
+        case "UPDATE_SUBSCRIPTION":
+            return { 
+                ...state,
+                loading: false,
+                user: action.user
+            }
+
         case "RENDER_ERROR":
             return {
                 ...state,

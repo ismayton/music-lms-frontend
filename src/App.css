@@ -78,42 +78,32 @@ button {
   text-transform: uppercase;
   padding: 8px 16px;
   text-decoration: none;
-  min-width: 75px;
+  min-width: 100px;
   margin: 5px;
   border: solid .25px;
   border-radius: 4px;
 }
 
-#user.selected {
-  background-color: blue;
-  color: white;
-}
-
-#teacher.selected {
-  background-color: orange;
-  color: white;
-}
-
-.selected {
-  background-color: red;
-  color: white; 
-}
-
-/* SUBSCRIBE AND UNSUBSCRIBE STYLING */
 .subscribe {
-  background-color: blue;
+  background-color: red;
   color: white;
   width: 90%;
   margin-bottom: 15px;
 }
 
 .unsubscribe {
-  background-color: red;
-  color: white; 
   width: 90%;
   margin-bottom: 15px;
 }
 
+.next-lesson {
+  float: right;
+  display: block;
+}
+
+.complete {
+  background-color: grey;
+}
 .course-count {
   display: inline-block;
   width: 15px;
@@ -122,6 +112,7 @@ button {
   border-radius: 50%;
   border: black 1px solid;
 }
+
 input {
   padding: 8px 16px;
   text-decoration: none;

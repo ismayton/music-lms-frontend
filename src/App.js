@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import marked from 'marked';
 
 // CONTAINERS
 import CoursesContainer from './containers/CoursesContainer';
@@ -35,6 +36,12 @@ class App extends Component {
       user: {}
     }
   }
+  
+  componentDidMount() {
+    this.loginStatus()
+    this.props.fetchCourses()
+    // this.fetchMarkdown()
+  }
 
   // LOGIN HANDLERS //
   loginStatus = () => {
@@ -51,12 +58,26 @@ class App extends Component {
     .catch(error => console.log('api errors:', error))
   };
 
-  componentDidMount() {
-    this.loginStatus()
-    this.props.fetchCourses()
-  }
+  // DONT FORGET!! TRANSITION LESSONS FROM DB ATTRIBUTES TO GITHUB .MD FILES WITH EMBEDS //
+  // fetchMarkdown = () => {
+  //   let user = 'ismayton'
+  //   let repo = 'horn-hippie-lessons'
+  //   let path = 'course-1-lesson-1.md'
+  //   let url = `https://raw.githubusercontent.com/${user}/${repo}/main/${path}`
+  //   let configObj = {
+  //     Headers: {'accept':'application/vnd.github.v3.raw'}
+  //   }
+    
+  //   fetch(url, configObj)
+  //   .then(response => response.text())
+  //   .then(text => this.renderMarkdown(text))
+  // }
 
-  
+  // renderMarkdown = (text) => {
+  //   let rawMarkup = marked(text)
+  //   let div = document.querySelector(".markdown")
+  //   div.innerHTML = rawMarkup
+  // }
 
   render() {
     return (
@@ -73,6 +94,8 @@ class App extends Component {
             <MainNavBar {...this.props} />
           </div>
           <body>
+            <div class="markdown">
+            </div>
             <Route exact path="/" render={() => (<CoursesContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
