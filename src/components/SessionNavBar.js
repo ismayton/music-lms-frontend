@@ -10,7 +10,7 @@ export default class SessionNavBar extends Component {
             </div>
         } else {
             return <div>
-                <NavLink to='/my-courses'><button >My Courses <div class="course-count">{this.props.user.courses.length}</div></button></NavLink>
+                <NavLink to='/my-courses'><button>My Courses <span class="course-count">{this.props.user.courses.length}</span></button></NavLink>
                 <NavLink to='/logout'><button>Log Out</button></NavLink>
             </div>
         }

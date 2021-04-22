@@ -115,11 +115,11 @@ button {
 }
 
 .course-count {
-  display: block;
+  display: inline-block;
   width: 15px;
   line-height: 1;
   padding: 1px;
-  border-radius: 100%;
+  border-radius: 50%;
   border: black 1px solid;
 }
 input {
