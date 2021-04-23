@@ -7,8 +7,8 @@ import CourseTOC from './CourseTOC';
 import { Link } from 'react-router-dom';
 
 // ACTIONS //
-// import createSubscription from '../actions/createSubscription';
-// import deleteSubscription from '../actions/deleteSubscription';
+import createSubscription from '../actions/createSubscription';
+import deleteSubscription from '../actions/deleteSubscription';
 import updateSubscription from '../actions/updateSubscription';
 
 class Course extends Component {
@@ -106,9 +106,6 @@ class Course extends Component {
         return <div className="course">
             <h1>{this.props.course.title}</h1>
             <div className="course sidebar">{this.renderSubscribeButton()}</div>
-            
-            {/* <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
-            { this.state.showHideLessons ? <LessonsContainer lessons={this.state.shownLessons} /> : null } */}
         </div>
     }
 
@@ -140,13 +137,9 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-    //   createUser: (user) => dispatch(createUser(user)),
-    //   loginUser: (user) => dispatch(loginUser(user)),
-    //   logoutUser: () => dispatch(logoutUser()),
-    //   fetchCourses: () => dispatch(fetchCourses()),
-    //   createSubscription: (userId, courseId) => dispatch(createSubscription(userId, courseId)),
-    //   deleteSubscription: (subId, userId) => dispatch(deleteSubscription(subId, userId)),
-    updateSubscription: (lessonId, subId) => dispatch(updateSubscription(lessonId, subId))
+        createSubscription: (userId, courseId) => dispatch(createSubscription(userId, courseId)),
+        deleteSubscription: (subId, userId) => dispatch(deleteSubscription(subId, userId)),
+        updateSubscription: (lessonId, subId) => dispatch(updateSubscription(lessonId, subId))
     }
   }
   

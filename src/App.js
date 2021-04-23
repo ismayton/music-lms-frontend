@@ -22,9 +22,7 @@ import createUser from './actions/createUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
-import createSubscription from './actions/createSubscription'
-import deleteSubscription from './actions/deleteSubscription'
-// import fetchUser from './actions/fetchUser';
+
 // import fetchTeacher from './actions/fetchTeacher';
 
 //BRANDING
@@ -41,46 +39,9 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.loginStatus()
     this.props.fetchCourses()
     // this.fetchMarkdown()
   }
-
-  // LOGIN HANDLERS //
-  loginStatus = () => {
-    fetch('http://127.0.0.1:3001/api/v1/logged_in')    
-    .then(response => response.json())
-    .then(json => {
-      if (json.logged_in) {
-        this.handleLogin(json)
-        this.redirect()
-      } else {
-        this.handleLogout()
-      }
-    })
-    .catch(error => console.log('api errors:', error))
-  };
-
-  // DONT FORGET!! TRANSITION LESSONS FROM DB ATTRIBUTES TO GITHUB .MD FILES WITH EMBEDS //
-  // fetchMarkdown = () => {
-  //   let user = 'ismayton'
-  //   let repo = 'horn-hippie-lessons'
-  //   let path = 'course-1-lesson-1.md'
-  //   let url = `https://raw.githubusercontent.com/${user}/${repo}/main/${path}`
-  //   let configObj = {
-  //     Headers: {'accept':'application/vnd.github.v3.raw'}
-  //   }
-    
-  //   fetch(url, configObj)
-  //   .then(response => response.text())
-  //   .then(text => this.renderMarkdown(text))
-  // }
-
-  // renderMarkdown = (text) => {
-  //   let rawMarkup = marked(text)
-  //   let div = document.querySelector(".markdown")
-  //   div.innerHTML = rawMarkup
-  // }
 
   render() {
     return (
@@ -95,9 +56,6 @@ class App extends Component {
               <SessionNavBar {...this.props} />
             </div>
           </header>
-
-          
-
           <body>
             {/* <div class="markdown">
               {this.fetchMarkdown()}
@@ -125,12 +83,31 @@ const mapDispatchToProps = dispatch => {
     loginUser: (user) => dispatch(loginUser(user)),
     logoutUser: () => dispatch(logoutUser()),
     fetchCourses: () => dispatch(fetchCourses()),
-    createSubscription: (userId, courseId) => dispatch(createSubscription(userId, courseId)),
-    deleteSubscription: (subId, userId) => dispatch(deleteSubscription(subId, userId))
     // not needed? //
-    // fetchUser: (userId) => dispatch(fetchUser(userId)),
     // fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+
+// DONT FORGET!! TRANSITION LESSONS FROM DB ATTRIBUTES TO GITHUB .MD FILES WITH EMBEDS //
+  // fetchMarkdown = () => {
+  //   let user = 'ismayton'
+  //   let repo = 'horn-hippie-lessons'
+  //   let path = 'course-1-lesson-1.md'
+  //   let url = `https://raw.githubusercontent.com/${user}/${repo}/main/${path}`
+  //   let configObj = {
+  //     Headers: {'accept':'application/vnd.github.v3.raw'}
+  //   }
+    
+  //   fetch(url, configObj)
+  //   .then(response => response.text())
+  //   .then(text => this.renderMarkdown(text))
+  // }
+
+  // renderMarkdown = (text) => {
+  //   let rawMarkup = marked(text)
+  //   let div = document.querySelector(".markdown")
+  //   div.innerHTML = rawMarkup
+  // }
