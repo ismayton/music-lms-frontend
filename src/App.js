@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CoursesContainer from './containers/CoursesContainer';
 import UserViewContainer from './containers/UserViewContainer';
 import HomeViewContainer from './containers/HomeViewContainer';
-// import TeacherViewContainer from './containers/TeacherViewContainer';
+import TeacherViewContainer from './containers/TeacherViewContainer';
 
 // COMPONENTS 
 import SessionNavBar from './components/SessionNavBar';
@@ -22,7 +22,7 @@ import createUser from './actions/createUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
-// import fetchTeacher from './actions/fetchTeacher';
+import fetchTeacher from './actions/fetchTeacher';
 
 //BRANDING
 import logo from './images/hornhippie_logo_primary.png'
@@ -39,6 +39,7 @@ class App extends Component {
   
   componentDidMount() {
     this.props.fetchCourses()
+    this.props.fetchTeacher(1)
     // this.fetchMarkdown()
   }
 
@@ -63,6 +64,7 @@ class App extends Component {
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
             <Route path="/all-courses" render={() => (<CoursesContainer {...this.props} />)} />
+            <Route exact path="/teacher" render={() => (<TeacherViewContainer teacher={this.props.teacher} />)} />
             <Route path="/my-courses" render={() => (<UserViewContainer {...this.props} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>
           </body>
@@ -73,7 +75,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return { courses: state.courses, loading: state.loading, user: state.user }
+  return { courses: state.courses, teacher: state.teacher, user: state.user, loading: state.loading  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -82,8 +84,7 @@ const mapDispatchToProps = dispatch => {
     loginUser: (user) => dispatch(loginUser(user)),
     logoutUser: () => dispatch(logoutUser()),
     fetchCourses: () => dispatch(fetchCourses()),
-    // not needed? //
-    // fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
+    fetchTeacher: (teacherId) => dispatch(fetchTeacher(teacherId)),
   }
 }
 

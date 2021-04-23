@@ -59,7 +59,7 @@ p, div, span {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 body {
@@ -225,8 +225,8 @@ a:link, a:visited {
   margin: 15px auto 15px auto;
   padding: 15px;
   max-width: 700px;
-  /* background-color: white; */
-  /* border: var(--border-color) 1px solid; */
+  background-color: white;
+   border: var(--border-color) 1px solid;
   border-radius: 4px;
 }
 
