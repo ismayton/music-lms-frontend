@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import CoursesContainer from './containers/CoursesContainer';
 import UserViewContainer from './containers/UserViewContainer';
 import HomeViewContainer from './containers/HomeViewContainer';
-import TeacherViewContainer from './containers/TeacherViewContainer';
+// import TeacherViewContainer from './containers/TeacherViewContainer';
 
 // COMPONENTS 
 import SessionNavBar from './components/SessionNavBar';
@@ -22,7 +22,6 @@ import createUser from './actions/createUser';
 import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
-
 // import fetchTeacher from './actions/fetchTeacher';
 
 //BRANDING
