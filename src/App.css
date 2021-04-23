@@ -41,7 +41,6 @@ p, div, span {
 .App-logo {
   margin-top: 25px;
   margin-bottom: 0px;
-  /* height: 150px; */
   width: 400px;
   pointer-events: none;
 }
@@ -60,6 +59,7 @@ p, div, span {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-bottom: 100px;
 }
 
 body {
@@ -127,6 +127,7 @@ input {
   background-color: var(--background-color);
   padding: 5px;
   width: 90%;
+  max-width: 800px;
   display: block;
   overflow: auto;
   margin: auto;
@@ -134,25 +135,23 @@ input {
 
 .nav .main {
   display: inline-block;
+  vertical-align: middle;
 }
 
 .nav .greeting {
   display: inline-block;
   max-width: 200px;
-  vertical-align: middle;
 }
 
 .nav .greeting h5 {
-  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
+
 /* SESSION NAV BAR */
 .nav .session {
   display: inline-block;
-  /* position: absolute;
-  right: 0;
-  top: 50px;
-  background-color: inherit;
-  width: 200px; */
+  vertical-align: middle;
 }
 
 .session ul {
@@ -229,8 +228,8 @@ a:link, a:visited {
   margin: 15px auto 15px auto;
   padding: 15px;
   max-width: 700px;
-  background-color: white;
-  border: var(--border-color) 1px solid;
+  /* background-color: white; */
+  /* border: var(--border-color) 1px solid; */
   border-radius: 4px;
 }
 
@@ -240,8 +239,8 @@ a:link, a:visited {
 
 .blurb h3, .blurb h4 {
   text-align: left;
-  /* margin: 50px 15px; */
 }
+
 @media only screen and (max-width: 768px){
   .nav .greeting {
     display: none;

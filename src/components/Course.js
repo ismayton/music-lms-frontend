@@ -21,7 +21,6 @@ class Course extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         this.showOneLesson(this.props.course.lessons[0].id)
     }
 
