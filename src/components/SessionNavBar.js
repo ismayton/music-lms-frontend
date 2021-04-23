@@ -18,23 +18,20 @@ export default class SessionNavBar extends Component {
 
     renderSessionStatus = () => {
         if (this.props.user) {
-          let user = this.props.user
-          return <div>
-              <h5>Welcome, <br/>{user.username}</h5>
-            </div>
-        } else {
-          return <h5>Log in or Sign up to Start</h5>
+          return <h5>Howdy, {this.props.user.username}!</h5>
         }
       }
 
     render() {
         return (
-            <div className="nav session">
-                {this.renderSessionStatus()}
-                <ul>
+            <>
+                <div className="greeting">
+                    {this.renderSessionStatus()}
+                </div>
+                <div className="session">
                     {this.renderNav()}
-                </ul>
-            </div>
+                </div>
+            </>
         ); 
     }
 };

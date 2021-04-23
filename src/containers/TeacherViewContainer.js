@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-// import CoursesContainer from './CoursesContainer';
-// import TeacherDashboard from '../components/TeacherDashboard';
+import CoursesContainer from './CoursesContainer';
+import TeacherDashboard from '../components/TeacherDashboard';
 
 export default class TeacherViewContainer extends Component { 
     
     
     componentDidMount() {
-        console.log('component mounted, fetching teacher')
         this.props.fetchTeacher(2)
         console.log(this.props)
     }

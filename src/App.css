@@ -39,7 +39,7 @@ p, div, span {
 }
 
 .App-logo {
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 0px;
   /* height: 150px; */
   width: 400px;
@@ -47,8 +47,8 @@ p, div, span {
 }
 .App-icon {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 25px;
+  left: 25px;
   width: 150px;
   pointer-events: none;
 }
@@ -93,7 +93,7 @@ button {
 
 .unsubscribe {
   width: 90%;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .next-lesson {
@@ -104,6 +104,7 @@ button {
 .complete {
   background-color: grey;
 }
+
 .course-count {
   display: inline-block;
   width: 15px;
@@ -124,45 +125,49 @@ input {
 /* MAIN NAV BAR */
 .nav {
   background-color: var(--background-color);
-  
   padding: 5px;
+  width: 90%;
+  display: block;
+  overflow: auto;
+  margin: auto;
 }
 
-.nav.main {
-  width: 100%;
-  z-index: 0;
-  margin-bottom: 15px;
+.nav .main {
+  display: inline-block;
 }
 
+.nav .greeting {
+  display: inline-block;
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+.nav .greeting h5 {
+  margin: 0;
+}
 /* SESSION NAV BAR */
-.nav.session {
-  position: fixed;
+.nav .session {
+  display: inline-block;
+  /* position: absolute;
   right: 0;
-  top: 0;
-  padding-top: 50px;
+  top: 50px;
   background-color: inherit;
-  width: 150px;
-  z-index: 1;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  width: 200px; */
 }
 
 .session ul {
   list-style-type: none;
-  margin: 0;
+  margin: auto;
   padding: 15px 0px;
-  width: 150px;
 }
 
 /* COURSE */
 .course {
   display: block;
   overflow: auto;
-  margin: 8px 175px 8px 15px;
-  padding: 5px 25px 5px 5px;
-  /* min-height: 150px; */
-  /* width: 80%; */
-  max-width: 1000px;
+  margin: 15px auto 15px auto;
+  padding: 15px;
+  max-width: 700px;
   background-color: white;
   border: var(--border-color) 1px solid;
   border-radius: 4px;
@@ -171,8 +176,7 @@ input {
 .course.sidebar {
   float: left;
   width: 150px;
-  margin: 22.78px 25px 5px 5px;
-  padding: 5px;
+  margin: 0 15px 0 0;
   border-radius: 4px;
   border: none;
 }
@@ -190,6 +194,7 @@ input {
 
 .course-nav ul button {
   width: 90%;
+  padding: 3px;
 }
 
 /* STYLING FOR NavLink OBJECTS */
@@ -202,12 +207,12 @@ a:link, a:visited {
 /* LESSONS STYLING */
 .lessons {
   margin: auto;
-  padding: 5px;
 }
 
 /* LESSON STYLING */
 .lesson {
-  /* padding: 50px; */
+  padding-top: 0;
+  padding: 15px;
 }
 
 .lesson .content {
@@ -219,11 +224,39 @@ a:link, a:visited {
 }
 
 .blurb, .dashboard {
-  width: 300px;
-  margin: auto;
+  display: block;
+  overflow: auto;
+  margin: 15px auto 15px auto;
+  padding: 15px;
+  max-width: 700px;
+  background-color: white;
+  border: var(--border-color) 1px solid;
+  border-radius: 4px;
 }
 
+.blurb-title {
+  margin: 50px;
+}
 
+.blurb h3, .blurb h4 {
+  text-align: left;
+  /* margin: 50px 15px; */
+}
+@media only screen and (max-width: 768px){
+  .nav .greeting {
+    display: none;
+  }
+   
+  .App-icon {
+    position: relative;
+    top: 25px;
+    left: 0;
+  }
+
+  .course, .blurb {
+    margin: 15px;
+  }
+}
 
 
 

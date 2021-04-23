@@ -18,8 +18,7 @@ export default class CourseTOC extends Component {
                     id={index} 
                     name={lesson.title} 
                     onClick={() => this.props.showOneLesson(lesson.id)
-                }>
-                    {lesson.title}
+                }> {lesson.title}
                 </button>
             </li>
         )
@@ -27,15 +26,12 @@ export default class CourseTOC extends Component {
 
     render() {
         return <div className="course-nav">
-            <h4>Choose a Lesson</h4>
+            <h4>Lessons</h4>
             <ul>
                 {this.renderMenu()}
-                <button 
-                    type="button" 
-                    onClick={event => this.props.showAllLessons(event)}
-                >
+                {/* <button type="button" onClick={event => this.props.showAllLessons(event)}>
                     {this.props.hiddenOrShown ? "Hide All Lessons" : "Show All Lessons"}
-                </button>
+                </button> */}
             </ul>
         </div>
     }

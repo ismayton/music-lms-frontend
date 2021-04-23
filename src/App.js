@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // CONTAINERS
 import CoursesContainer from './containers/CoursesContainer';
+import UserViewContainer from './containers/UserViewContainer';
+import HomeViewContainer from './containers/HomeViewContainer';
+import TeacherViewContainer from './containers/TeacherViewContainer';
 
 // COMPONENTS 
 import SessionNavBar from './components/SessionNavBar';
@@ -87,20 +90,23 @@ class App extends Component {
           <img src={icon} class="App-icon" alt="Horn Hippie Icon"/>
             <img src={logo} class="App-logo" alt="Horn Hippie Logo"/>
             <h2 style={{marginTop: '10px'}}>Academy</h2>
-            <SessionNavBar {...this.props} />
-          </header>
-          <div className="nav main">
-            
-            <MainNavBar {...this.props} />
-          </div>
-          <body>
-            <div class="markdown">
+            <div className="nav">
+              <MainNavBar {...this.props} />
+              <SessionNavBar {...this.props} />
             </div>
-            <Route exact path="/" render={() => (<CoursesContainer {...this.props} />)} />
+          </header>
+
+          
+
+          <body>
+            {/* <div class="markdown">
+              {this.fetchMarkdown()}
+            </div> */}
+            <Route exact path="/" render={() => (<HomeViewContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
             <Route path="/all-courses" render={() => (<CoursesContainer {...this.props} />)} />
-            <Route path="/my-courses" render={() => (<CoursesContainer {...this.props} />)} />
+            <Route path="/my-courses" render={() => (<UserViewContainer {...this.props} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>
           </body>
         </div>

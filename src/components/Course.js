@@ -16,8 +16,13 @@ class Course extends Component {
         super();
         this.state = {
             showHideLessons: false,
-            shownLessons: props.course.lessons
+            shownLessons: null
         }
+    }
+
+    componentDidMount() {
+        console.log(this.props)
+        this.showOneLesson(this.props.course.lessons[0].id)
     }
 
     // SHOW AND HIDE LESSONS //
@@ -29,9 +34,7 @@ class Course extends Component {
     }
 
     showOneLesson = lessonId => {
-        console.log(lessonId)
         let shownLesson = this.props.course.lessons.find(lesson => lesson.id === lessonId)
-        console.log(shownLesson)
         this.setState({
             showHideLessons: true,
             shownLessons: [shownLesson]
@@ -80,8 +83,8 @@ class Course extends Component {
     // CONDITIONAL RENDERING OF COURSE //
     renderSubscribedCourse = () => {
         return <div className="course">
+            <h1>{this.props.course.title}</h1>
             <div className="course sidebar">
-                {this.renderSubscribeButton()}
                 <CourseTOC 
                     lessons={this.props.course.lessons} 
                     progress={this.courseProgress(this.props.course.id)} 
@@ -89,8 +92,9 @@ class Course extends Component {
                     hiddenOrShown={this.state.showHideLessons} 
                     showOneLesson={this.showOneLesson}
                     />
+                {this.renderSubscribeButton()}
             </div>
-            <h1>{this.props.course.title}</h1>
+            
             { this.state.showHideLessons ? <LessonsContainer 
                 lessons={this.state.shownLessons} 
                 showOneLesson={this.showOneLesson} 
@@ -101,9 +105,9 @@ class Course extends Component {
 
     renderUnsubscribedCourse = () => {
         return <div className="course">
-            
-            <div className="course sidebar">{this.renderSubscribeButton()}</div>
             <h1>{this.props.course.title}</h1>
+            <div className="course sidebar">{this.renderSubscribeButton()}</div>
+            
             {/* <CourseTOC lessons={this.props.course.lessons} showAllLessons={this.showAllLessons} hiddenOrShown={this.state.showHideLessons} showOneLesson={this.showOneLesson}/>
             { this.state.showHideLessons ? <LessonsContainer lessons={this.state.shownLessons} /> : null } */}
         </div>
