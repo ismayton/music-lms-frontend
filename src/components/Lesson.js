@@ -5,17 +5,13 @@ export default class Lesson extends Component {
     renderProgressButton() {
         return <button 
             className="next-lesson" 
-            onClick={() => this.props.handleLessonProgress(this.props.lesson.id, this.props.last)}>
+            onClick={() => this.props.handleLessonProgress(this.props.lesson.id)}>
                 Go Next
             </button>
     }
 
     renderLastButton() {
-        return <button 
-            className="last-lesson" 
-            onClick={() => this.props.handleLessonProgress(this.props.lesson.id, this.props.last)}>
-                Complete Course
-            </button>
+        return <h3>You have Completed the Course!</h3>
     }
 
     render() {
@@ -24,7 +20,7 @@ export default class Lesson extends Component {
             <p className="content">{this.props.lesson.content}</p>
             <p>{this.props.last}</p>
             <iframe className="video" src={this.props.lesson.video_url} title={this.props.lesson.title}></iframe><br></br>
-            {this.renderProgressButton()}
+            {!this.props.last ? this.renderProgressButton() : this.renderLastButton()}
         </div>
     }
 }

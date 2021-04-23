@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS //
-import LessonsContainer from '../containers/LessonsContainer';
+// import LessonsContainer from '../containers/LessonsContainer';
+import Lesson from '../components/Lesson'
 import CourseTOC from './CourseTOC';
 import { Link } from 'react-router-dom';
 
@@ -16,27 +17,22 @@ class Course extends Component {
         super();
         this.state = {
             showHideLessons: false,
-            shownLessons: null
+            shownLesson: null,
+            complete: false
         }
     }
 
     componentDidMount() {
         this.showOneLesson(this.props.course.lessons[0].id)
+        this.checkForCompletion()
     }
 
-    // SHOW AND HIDE LESSONS //
-    showAllLessons = () => {
-        this.setState({
-            showHideLessons: !this.state.showHideLessons,
-            shownLessons: this.props.course.lessons
-        })
-    }
-
+    // SHOW AND HIDE LESSON //
     showOneLesson = lessonId => {
         let shownLesson = this.props.course.lessons.find(lesson => lesson.id === lessonId)
         this.setState({
             showHideLessons: true,
-            shownLessons: [shownLesson]
+            shownLesson: shownLesson
         })
     }
 
@@ -48,17 +44,51 @@ class Course extends Component {
             return <button class="subscribe" onClick={() => this.props.createSubscription(this.props.user.id, this.props.course.id)}>Subscribe</button> 
         }
     }
-    
-    handleLessonProgress = (lessonId, last = false) => {
-        this.props.updateSubscription(lessonId, this.props.subscription.id)
-        if (last) {
 
+    nextLessonId() {
+        if (this.props.subscription) {
+            if (this.state.complete) {
+                return this.props.course.lessons[0].id
+            }
+            return this.props.subscription.lesson_statuses.find(lesson => lesson.status === "").lesson_id
+        }
+    }
+
+    // USE PROGRESS TO DETERMINE THE NEXT LESSON, OR IF THE COURSE IS COMPLETE //
+    handleLessonProgress = (lessonId) => {
+        this.props.updateSubscription(lessonId, this.props.subscription.id)
+        if (this.state.complete) {
+            this.showOneLesson(this.props.course.lessons[0].id)
+        } else if (lessonId === this.lastLessonId()) {
+            this.showOneLesson(this.nextLessonId())
         } else {
             this.showOneLesson(lessonId + 1)
         }
     }
 
-    // CONDITIONALLY OF COURSE //
+    lastLessonId() {
+        if (this.props.subscription) {
+            let statuses = this.props.subscription.lesson_statuses
+            return statuses[statuses.length - 1].lesson_id
+        }
+    } 
+
+    checkForCompletion() {
+        if (this.props.subscription) {
+            let status = !this.props.subscription.lesson_statuses.some(status => status.status === '')
+            this.setState({
+                complete: status
+            })
+        }
+    }
+
+    finalLesson() {
+        let incomplete = this.props.subscription.lesson_statuses.filter(status => status.status === '').length
+        console.log('remaining lessons to complete: ')
+        return incomplete > 0 ? false : true
+    }
+
+    // CONDITIONALLY RENDER COURSE //
     renderSubscribedCourse = () => {
         return <div className="course">
             <h1>{this.props.course.title}</h1>
@@ -73,10 +103,11 @@ class Course extends Component {
                 {this.renderSubscribeButton()}
             </div>
             
-            { this.state.showHideLessons ? <LessonsContainer 
-                lessons={this.state.shownLessons} 
-                showOneLesson={this.showOneLesson} 
+            { this.state.showHideLessons ? <Lesson 
+                lesson={this.state.shownLesson} 
+                // showOneLesson={this.showOneLesson} 
                 handleLessonProgress={this.handleLessonProgress}
+                last={this.finalLesson()}
                 /> : null }
         </div>
     }

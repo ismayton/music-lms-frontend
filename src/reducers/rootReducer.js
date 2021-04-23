@@ -36,17 +36,17 @@ const userReducer = (state = null, action ) => {
     }
 }
 
-const teacherReducer = (state = null, action ) => {
-    switch(action.type) {
-        // case 'LOADING_TEACHER':
-        //     return {...state}
+// const teacherReducer = (state = null, action ) => {
+//     switch(action.type) {
+//         // case 'LOADING_TEACHER':
+//         //     return {...state}
 
-        case 'CHANGE_TEACHER':
-            return action.teacher
+//         case 'CHANGE_TEACHER':
+//             return action.teacher
            
-        default: return state;
-    }
-}
+//         default: return state;
+//     }
+// }
 
 const loadingReducer = (state = false, action) => {
     switch(action.type) {

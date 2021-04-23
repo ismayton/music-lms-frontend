@@ -3,9 +3,7 @@ import Lesson from '../components/Lesson'
 
 export default class LessonsContainer extends Component { 
     renderLessons() {
-        this.props.lessons.map((lesson) => {
-            return <Lesson lesson={lesson} handleLessonProgress={this.props.handleLessonProgress}/>
-       })
+        return this.props.lessons.map( lesson => <Lesson lesson={lesson} handleLessonProgress={this.props.handleLessonProgress}/>)
     }
 
     render() {
