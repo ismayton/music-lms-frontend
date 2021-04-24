@@ -2,7 +2,10 @@ import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import marked from 'marked';
+
+//BRANDING
+import logo from './images/hornhippie_logo_primary.png';
+import icon from './images/hornhippie_icon_teal CIRCULAR.png';
 
 // CONTAINERS
 import CoursesContainer from './containers/CoursesContainer';
@@ -12,10 +15,10 @@ import TeacherViewContainer from './containers/TeacherViewContainer';
 
 // COMPONENTS 
 import SessionNavBar from './components/SessionNavBar';
-import MainNavBar from './components/MainNavBar'
+import MainNavBar from './components/MainNavBar';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import Logout from './components/Logout'
+import Logout from './components/Logout';
 
 //ACTIONS
 import createUser from './actions/createUser';
@@ -23,10 +26,6 @@ import loginUser from './actions/loginUser';
 import logoutUser from './actions/logoutUser';
 import fetchCourses from './actions/fetchCourses';
 import fetchTeacher from './actions/fetchTeacher';
-
-//BRANDING
-import logo from './images/hornhippie_logo_primary.png'
-import icon from './images/hornhippie_icon_teal CIRCULAR.png'
 
 class App extends Component {
   constructor(props) {
@@ -89,25 +88,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-
-// DONT FORGET!! TRANSITION LESSONS FROM DB ATTRIBUTES TO GITHUB .MD FILES WITH EMBEDS //
-  // fetchMarkdown = () => {
-  //   let user = 'ismayton'
-  //   let repo = 'horn-hippie-lessons'
-  //   let path = 'course-1-lesson-1.md'
-  //   let url = `https://raw.githubusercontent.com/${user}/${repo}/main/${path}`
-  //   let configObj = {
-  //     Headers: {'accept':'application/vnd.github.v3.raw'}
-  //   }
-    
-  //   fetch(url, configObj)
-  //   .then(response => response.text())
-  //   .then(text => this.renderMarkdown(text))
-  // }
-
-  // renderMarkdown = (text) => {
-  //   let rawMarkup = marked(text)
-  //   let div = document.querySelector(".markdown")
-  //   div.innerHTML = rawMarkup
-  // }

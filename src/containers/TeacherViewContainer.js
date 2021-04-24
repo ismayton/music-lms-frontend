@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 // import CoursesContainer from './CoursesContainer';
 import TeacherDashboard from '../components/TeacherDashboard';

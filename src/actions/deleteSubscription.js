@@ -16,7 +16,7 @@ export default function deleteSubscription(subId, userId) {
         .then(response => response.json())
         .then(json => {
                 dispatch({ 
-                    type: 'UPDATE_SUBSCRIPTIONS', 
+                    type: 'UPDATE_SUBSCRIPTION', 
                     user: json
                 })
             }      

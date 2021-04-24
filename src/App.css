@@ -165,17 +165,23 @@ input {
   display: block;
   overflow: auto;
   margin: 15px auto 15px auto;
-  padding: 15px;
-  max-width: 700px;
+  padding: 5px;
+  max-width: 800px;
   background-color: white;
   border: var(--border-color) 1px solid;
   border-radius: 4px;
 }
 
+.course .container {
+  display: flex;
+  /* flex-flow: row wrap; */
+  flex-wrap: wrap;
+  flex-direction: row; 
+  justify-content: center;
+}
+
 .course.sidebar {
-  float: left;
   width: 150px;
-  margin: 0 15px 0 0;
   border-radius: 4px;
   border: none;
 }
@@ -203,18 +209,15 @@ a:link, a:visited {
   color: black;
 }
 
-/* LESSONS STYLING */
-.lessons {
-  margin: auto;
-}
-
 /* LESSON STYLING */
 .lesson {
   padding-top: 0;
+  width: 600px;
   padding: 15px;
+  flex-shrink: 1;  
 }
 
-.lesson .video {
+.lesson .video, iframe {
   height: 240px;
   width: 426px;
 }
@@ -224,7 +227,7 @@ a:link, a:visited {
   overflow: auto;
   margin: 15px auto 15px auto;
   padding: 15px;
-  max-width: 700px;
+  max-width: 800px;
   background-color: white;
    border: var(--border-color) 1px solid;
   border-radius: 4px;
@@ -238,7 +241,7 @@ a:link, a:visited {
   text-align: left;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 900px){
   .nav .greeting {
     display: none;
   }
@@ -249,10 +252,11 @@ a:link, a:visited {
     left: 0;
   }
 
+  .course.sidebar {
+    height: 200px;
+  }
+
   .course, .blurb {
     margin: 15px;
   }
 }
-
-
-

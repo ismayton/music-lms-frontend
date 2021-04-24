@@ -23,6 +23,7 @@ class Course extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.course.lessons[0].title)
         this.showOneLesson(this.props.course.lessons[0].id)
         this.checkForCompletion()
     }
@@ -30,6 +31,7 @@ class Course extends Component {
     // SHOW AND HIDE LESSON //
     showOneLesson = lessonId => {
         let shownLesson = this.props.course.lessons.find(lesson => lesson.id === lessonId)
+        console.log(shownLesson.title)
         this.setState({
             showHideLessons: true,
             shownLesson: shownLesson
@@ -84,7 +86,6 @@ class Course extends Component {
 
     finalLesson() {
         let incomplete = this.props.subscription.lesson_statuses.filter(status => status.status === '').length
-        console.log('remaining lessons to complete: ')
         return incomplete > 0 ? false : true
     }
 
@@ -92,23 +93,24 @@ class Course extends Component {
     renderSubscribedCourse = () => {
         return <div className="course">
             <h1>{this.props.course.title}</h1>
-            <div className="course sidebar">
-                <CourseTOC 
-                    lessons={this.props.course.lessons} 
-                    progress={this.props.subscription.lesson_statuses} 
-                    showAllLessons={this.showAllLessons} 
-                    hiddenOrShown={this.state.showHideLessons} 
-                    showOneLesson={this.showOneLesson}
-                    />
-                {this.renderSubscribeButton()}
+            <div className="container">
+                <div className="course sidebar">
+                    <CourseTOC 
+                        lessons={this.props.course.lessons} 
+                        progress={this.props.subscription.lesson_statuses} 
+                        showAllLessons={this.showAllLessons} 
+                        hiddenOrShown={this.state.showHideLessons} 
+                        showOneLesson={this.showOneLesson}
+                        />
+                    {this.renderSubscribeButton()}
+                </div>
+                { this.state.showHideLessons ? <Lesson 
+                    lesson={this.state.shownLesson} 
+                    // showOneLesson={this.showOneLesson} 
+                    handleLessonProgress={this.handleLessonProgress}
+                    last={this.finalLesson()}
+                    /> : null }
             </div>
-            
-            { this.state.showHideLessons ? <Lesson 
-                lesson={this.state.shownLesson} 
-                // showOneLesson={this.showOneLesson} 
-                handleLessonProgress={this.handleLessonProgress}
-                last={this.finalLesson()}
-                /> : null }
         </div>
     }
 
