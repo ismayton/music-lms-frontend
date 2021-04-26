@@ -11,29 +11,35 @@ import updateSubscription from '../actions/updateSubscription';
 class CoursesContainer extends Component { 
 
     renderCourses() {
-        return this.props.courses.map( course => {
-            return <div className="course">
+        if (this.props.courses) {
+            return this.props.courses.map( course => <div className="course">
                 <h1>{course.title}</h1>
                 {this.courseDashboard(course)}
                 {this.renderButton(course)}
-            </div>
-        })
+            </div>)
+        }
+        
     }
 
     courseDashboard(course) {
         let sub = this.subscription(course.id)
         if (sub) {
-            let count = sub.lesson_statuses.filter(status => status.status === 'complete').length
-            return <div>
-            <h4>Progress: {count} out of {course.lessons.length} Complete</h4>
-        </div>
+            if (sub.complete) {
+                return <div>
+                    <h4>Course Complete</h4>
+                </div> 
+            } else {
+                let count = sub.lesson_statuses.filter(status => status.status === 'complete').length
+                return <div>
+                <h4>Progress: {count} out of {course.lessons.length} Complete</h4> </div>
+            }
         } else {
             return <div>
             <h4>Lessons: {course.lessons.length}</h4>
         </div>
         }
     }
-    
+
     // RETURN ACTIVE SUBSCRIPTION OR NULL //
     subscription = (courseId) => {
         if (this.props.user) {

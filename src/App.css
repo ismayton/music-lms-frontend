@@ -99,8 +99,16 @@ button {
   float: right;
 }
 
-.complete {
+button.complete {
   background-color: grey;
+}
+
+a.active {
+  background-color: inherit;
+}
+
+button.active {
+  background-color: yellow;
 }
 
 .course-count {
@@ -224,7 +232,7 @@ a:link, a:visited {
   overflow: auto;
   margin: 15px auto 15px auto;
   padding: 15px;
-  max-width: 600px;
+  max-width: 800px;
   background-color: white;
    border: var(--border-color) 1px solid;
   border-radius: 4px;

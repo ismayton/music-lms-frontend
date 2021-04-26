@@ -33,15 +33,6 @@ class Course extends Component {
         })
     }
 
-    nextLessonId() {
-        if (this.props.subscription) {
-            if (this.state.complete) {
-                return this.props.course.lessons[0].id
-            }
-            return this.props.subscription.lesson_statuses.find(lesson => lesson.status === "").lesson_id
-        }
-    }
-
     // USE PROGRESS TO DETERMINE THE NEXT LESSON, OR IF THE COURSE IS COMPLETE //
     handleLessonProgress = (lessonId) => {
         this.props.updateSubscription(lessonId, this.props.subscription.id)
@@ -104,6 +95,7 @@ class Course extends Component {
                         lessons={this.props.course.lessons} 
                         progress={this.props.subscription.lesson_statuses} 
                         showOneLesson={this.showOneLesson}
+                        active={this.state.lesson}
                         />
                     {this.renderButton()}
                 </div>
@@ -117,8 +109,11 @@ class Course extends Component {
             </div>
     }
 
-    renderLessonButton = (lessonId) => { 
-        if (lessonId === this.lastLessonId()) {
+    renderLessonButton = (lessonId) => {
+        console.log(this.props.subscription.complete)
+        if (this.props.subscription.complete) {
+            return <h3>Congratulations! You have completed the course!</h3>
+        } else if (lessonId === this.lastLessonId()) {
             return <button 
                     className="next-lesson" 
                     onClick={() => this.handleLessonProgress(this.state.lesson.id)}>
