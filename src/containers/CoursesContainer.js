@@ -17,8 +17,7 @@ class CoursesContainer extends Component {
                 {this.courseDashboard(course)}
                 {this.renderButton(course)}
             </div>)
-        }
-        
+        } 
     }
 
     courseDashboard(course) {

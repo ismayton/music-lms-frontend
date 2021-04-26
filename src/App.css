@@ -59,7 +59,6 @@ p, div, span {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-bottom: 50px;
 }
 
 body {
@@ -85,7 +84,7 @@ button {
 }
 
 .subscribe {
-  background-color: red;
+  background-color: #0FAEAF;
   color: white;
   margin-bottom: 15px;
 }
@@ -103,16 +102,17 @@ button.complete {
   background-color: grey;
 }
 
-a.active {
-  background-color: inherit;
-}
-
 button.active {
-  background-color: yellow;
+  background-color: pink;
 }
 
-.course-count {
+button:hover {
+  background-color: #F8B327;
+}
+
+span.course-count {
   display: inline-block;
+  background-color: white;
   width: 15px;
   line-height: 1;
   padding: 1px;
@@ -127,31 +127,33 @@ input {
 }
 
 /* NAVIGATION */
-
 /* MAIN NAV BAR */
-.nav {
-  background-color: var(--background-color);
-  padding: 5px;
-  width: 90%;
-  max-width: 800px;
+div.nav {
+  background-color: inherit;
   display: block;
-  overflow: auto;
-  margin: auto;
+  padding: 0;
 }
 
-.nav .main {
+div.nav a {
   display: inline-block;
-  vertical-align: middle;
+  font-family: var(--body-font);
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  min-width: 100px;
+  text-decoration: none;
 }
 
-.nav .greeting {
-  display: inline-block;
-  max-width: 200px;
+.nav a.active {
+  background-color: pink;
 }
 
-.nav .greeting h5 {
+.nav a:hover {
+  background-color: #F8B327;
+}
+.nav .main, .nav .session {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 /* SESSION NAV BAR */
@@ -246,7 +248,13 @@ a:link, a:visited {
   text-align: left;
 }
 
-.dashboard > .user, .dashboard > .course {
+div.dashboard > .user, div.dashboard > .course {
+  width: auto;
+  margin: 15px auto 15px auto;
+  padding: 15px;
+  background-color: white;
+   border: var(--border-color) 1px solid;
+  border-radius: 4px;
 }
 
 @media only screen and (max-width: 900px){

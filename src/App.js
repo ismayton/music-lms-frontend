@@ -40,7 +40,6 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchCourses()
     this.props.fetchTeacher(1)
-    // this.fetchMarkdown()
   }
 
   subscription = (courseId) => {
@@ -48,6 +47,21 @@ class App extends Component {
         return this.props.user.subscriptions.find(userSub => userSub.course_id === courseId)
     } else {
         return null
+    }
+  }
+
+  renderCourse = (props) => {
+    let matchId = parseInt(props.match.params.id)
+    if(this.props.courses.length > 0) {
+      let course = this.props.courses.find(course => course.id === matchId)
+      return <Course 
+                  course={course} 
+                  user={this.props.user} 
+                  subscription={this.subscription(course.id)}
+                  
+              />
+    } else {
+      return <h1>Loading...</h1>
     }
   }
 
@@ -69,20 +83,7 @@ class App extends Component {
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
             <Route path="/all-courses" render={() => (<CoursesContainer {...this.props} />)} />
-            <Route path="/courses/:id" render={(props) => {
-              let matchId = parseInt(props.match.params.id)
-              if(this.props.courses.length > 0) {
-                let course = this.props.courses.find(course => course.id === matchId)
-                return <Course 
-                            course={course} 
-                            user={this.props.user} 
-                            subscription={this.subscription(course.id)}
-                            
-                        />
-              } else {
-                return <h1>Loading...</h1>
-              }
-              }}/>
+            <Route path="/courses/:id" render={(props) => (this.renderCourse(props))}/>
             <Route exact path="/teacher" render={() => (<TeacherViewContainer teacher={this.props.teacher} />)} />
             <Route path="/my-courses" render={() => (<UserViewContainer {...this.props} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>
@@ -92,7 +93,6 @@ class App extends Component {
     );
   }
 }
-
 const mapStateToProps = state => {
   return { courses: state.courses, teacher: state.teacher, user: state.user, loading: state.loading  }
 }

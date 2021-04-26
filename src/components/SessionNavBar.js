@@ -5,13 +5,13 @@ export default class SessionNavBar extends Component {
     renderNav() {
         if (!this.props.user) {
             return <div>
-                <NavLink to='/login'><button>Log In</button></NavLink>
-                <NavLink to='/signup'><button>Sign Up</button></NavLink>
+                <NavLink to='/login'>Log In</NavLink>
+                <NavLink to='/signup'>Sign Up</NavLink>
             </div>
         } else {
             return <div>
-                <NavLink to='/my-courses'><button>My Courses <span class="course-count">{this.props.user.courses.length}</span></button></NavLink>
-                <NavLink to='/logout'><button>Log Out</button></NavLink>
+                <NavLink to='/my-courses'>My Courses <span class="course-count">{this.props.user.courses.length}</span></NavLink>
+                <NavLink to='/logout'>Log Out</NavLink>
             </div>
         }
     }
@@ -23,16 +23,11 @@ export default class SessionNavBar extends Component {
       }
 
     render() {
-        return (
-            <>
-                <div className="greeting">
-                    {this.renderSessionStatus()}
-                </div>
+        return <>
                 <div className="session">
                     {this.renderNav()}
                 </div>
-            </>
-        ); 
+            </> 
     }
 };
 

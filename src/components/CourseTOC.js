@@ -6,7 +6,7 @@ export default class CourseTOC extends Component {
         console.log(this.props)
         
         if (this.props.progress){
-            if (lessonId === this.props.active.id) {
+            if (this.props.active && lessonId === this.props.active.id) {
                 return "active"
             }
             let progress = this.props.progress.find(progress => progress.lesson_id === lessonId)

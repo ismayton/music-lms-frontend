@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-
-// import CoursesContainer from './CoursesContainer';
 import TeacherDashboard from '../components/TeacherDashboard';
 
 export default class TeacherViewContainer extends Component { 

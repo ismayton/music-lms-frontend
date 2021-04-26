@@ -67,7 +67,6 @@ class Course extends Component {
         return incomplete > 0 ? false : true
     }
 
-    // CONDITIONALLY RENDER COURSE //
     renderButton() {
         let course = this.props.course
         if (this.props.subscription) {
@@ -127,7 +126,6 @@ class Course extends Component {
             </button>
         }
     }
-    // HANDLE LESSON PROGRESS WITH COMPLETION //
 
     render() {
         if (this.props.subscription) {
