@@ -14,6 +14,7 @@ import HomeViewContainer from './containers/HomeViewContainer';
 import TeacherViewContainer from './containers/TeacherViewContainer';
 
 // COMPONENTS 
+import Course from './components/Course';
 import SessionNavBar from './components/SessionNavBar';
 import MainNavBar from './components/MainNavBar';
 import LoginForm from './components/LoginForm';
@@ -42,6 +43,14 @@ class App extends Component {
     // this.fetchMarkdown()
   }
 
+  subscription = (courseId) => {
+    if (this.props.user) {
+        return this.props.user.subscriptions.find(userSub => userSub.course_id === courseId)
+    } else {
+        return null
+    }
+  }
+
   render() {
     return (
       <Router >
@@ -56,13 +65,24 @@ class App extends Component {
             </div>
           </header>
           <body>
-            {/* <div class="markdown">
-              {this.fetchMarkdown()}
-            </div> */}
             <Route exact path="/" render={() => (<HomeViewContainer {...this.props} />)} />
             <Route exact path="/login" render={() => (<LoginForm {...this.props} />)} />
             <Route exact path="/signup" render={() => (<SignupForm {...this.props} />)} />
             <Route path="/all-courses" render={() => (<CoursesContainer {...this.props} />)} />
+            <Route path="/courses/:id" render={(props) => {
+              let matchId = parseInt(props.match.params.id)
+              if(this.props.courses.length > 0) {
+                let course = this.props.courses.find(course => course.id === matchId)
+                return <Course 
+                            course={course} 
+                            user={this.props.user} 
+                            subscription={this.subscription(course.id)}
+                            
+                        />
+              } else {
+                return <h1>Loading...</h1>
+              }
+              }}/>
             <Route exact path="/teacher" render={() => (<TeacherViewContainer teacher={this.props.teacher} />)} />
             <Route path="/my-courses" render={() => (<UserViewContainer {...this.props} />)} />
             <Route path="/logout" render={() => (<Logout {...this.props} />)}/>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import LessonsContainer from '../containers/LessonsContainer';
 import Lesson from '../components/Lesson'
 import CourseTOC from './CourseTOC';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // ACTIONS //
 import createSubscription from '../actions/createSubscription';
@@ -16,14 +16,11 @@ class Course extends Component {
     constructor() {
         super();
         this.state = {
-            showHideLessons: false,
-            shownLesson: null,
-            complete: false
+            lesson: null
         }
     }
 
     componentDidMount() {
-        console.log(this.props.course.lessons[0].title)
         this.showOneLesson(this.props.course.lessons[0].id)
         this.checkForCompletion()
     }
@@ -31,10 +28,8 @@ class Course extends Component {
     // SHOW AND HIDE LESSON //
     showOneLesson = lessonId => {
         let shownLesson = this.props.course.lessons.find(lesson => lesson.id === lessonId)
-        console.log(shownLesson.title)
         this.setState({
-            showHideLessons: true,
-            shownLesson: shownLesson
+            lesson: shownLesson
         })
     }
 
@@ -59,11 +54,12 @@ class Course extends Component {
     // USE PROGRESS TO DETERMINE THE NEXT LESSON, OR IF THE COURSE IS COMPLETE //
     handleLessonProgress = (lessonId) => {
         this.props.updateSubscription(lessonId, this.props.subscription.id)
-        if (this.state.complete) {
-            this.showOneLesson(this.props.course.lessons[0].id)
-        } else if (lessonId === this.lastLessonId()) {
-            this.showOneLesson(this.nextLessonId())
-        } else {
+        if (this.finalLesson()) {
+
+        } else if (lessonId === this.lastLessonId() ) {
+
+        }
+        else {
             this.showOneLesson(lessonId + 1)
         }
     }
@@ -90,55 +86,68 @@ class Course extends Component {
     }
 
     // CONDITIONALLY RENDER COURSE //
-    renderSubscribedCourse = () => {
-        return <div className="course">
-            <h1>{this.props.course.title}</h1>
-            <div className="container">
+    renderButton(course) {
+        if (this.props.subscription) {
+            return <NavLink to={`/courses/${course.id}`}><button>Go to {course.title}</button></NavLink>
+        } else if (this.props.user) {
+            return <button class="subscribe" onClick={() => this.props.createSubscription(this.props.user.id, course.id)}>Subscribe</button>
+        } else {
+            return this.loggedOutButtons()
+        }
+    }
+
+    loggedOutButtons = () => {
+        return <span>To view this course,
+                <NavLink to="/login"><button>Log In</button></NavLink>
+                or
+                <NavLink to="/signup"><button>Sign Up</button></NavLink>
+            </span>
+    }
+
+    courseContent = () => {
+        return <div className="container">
                 <div className="course sidebar">
                     <CourseTOC 
                         lessons={this.props.course.lessons} 
                         progress={this.props.subscription.lesson_statuses} 
-                        showAllLessons={this.showAllLessons} 
-                        hiddenOrShown={this.state.showHideLessons} 
                         showOneLesson={this.showOneLesson}
                         />
                     {this.renderSubscribeButton()}
                 </div>
-                { this.state.showHideLessons ? <Lesson 
-                    lesson={this.state.shownLesson} 
-                    // showOneLesson={this.showOneLesson} 
-                    handleLessonProgress={this.handleLessonProgress}
-                    last={this.finalLesson()}
-                    /> : null }
+                { this.state.lesson ? this.renderLesson() : null }
             </div>
-        </div>
     }
 
-    renderUnsubscribedCourse = () => {
-        return <div className="course">
-            <h1>{this.props.course.title}</h1>
-            <div className="course sidebar">{this.renderSubscribeButton()}</div>
-        </div>
+    renderLesson = () => {
+        return <div className="lesson"><Lesson lesson={this.state.lesson} />
+                {this.renderLessonButton(this.state.lesson.id)}
+            </div>
     }
 
-    renderLoggedOut = () => {
-        return <div className="course">
-            <h1>{this.props.course.title}</h1>
-            <span>To view this course,
-                <Link to="/login"><button>Log In</button></Link>
-                or
-                <Link to="/signup"><button>Sign Up</button></Link>
-            </span>
-        </div>
+    renderLessonButton = (lessonId) => { 
+        if (lessonId === this.lastLessonId()) {
+            return <button>Complete</button>
+        } else {
+            return <button 
+                className="next-lesson" 
+                onClick={() => this.handleLessonProgress(this.state.lesson.id)}>
+                Go Next
+            </button>
+        }
     }
+    // HANDLE LESSON PROGRESS WITH COMPLETION //
 
     render() {
         if (this.props.subscription) {
-            return <>{this.renderSubscribedCourse()}</>
-        } else if (this.props.user) {
-                return <>{this.renderUnsubscribedCourse()}</>
+            return <div className="course">
+                <h1>{this.props.course.title}</h1>
+                {this.courseContent()}
+            </div>
         } else {
-            return <>{this.renderLoggedOut()}</>
+            return <div className="course">
+                <h1>{this.props.course.title}</h1>
+                {this.renderButton()}
+            </div>
         }
     }
 }

@@ -87,7 +87,6 @@ button {
 .subscribe {
   background-color: red;
   color: white;
-  width: 90%;
   margin-bottom: 15px;
 }
 
@@ -98,7 +97,6 @@ button {
 
 .next-lesson {
   float: right;
-  display: block;
 }
 
 .complete {
@@ -189,7 +187,7 @@ input {
 /* COURSE NAV BAR */
 .course-nav {
   overflow: scroll;
-  height: 400px;
+  max-height: 400px;
 }
 
 .course-nav ul {
@@ -223,11 +221,10 @@ a:link, a:visited {
 }
 
 .blurb, .dashboard {
-  display: block;
   overflow: auto;
   margin: 15px auto 15px auto;
   padding: 15px;
-  max-width: 800px;
+  max-width: 600px;
   background-color: white;
    border: var(--border-color) 1px solid;
   border-radius: 4px;

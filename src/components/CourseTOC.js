@@ -18,21 +18,20 @@ export default class CourseTOC extends Component {
                     id={index} 
                     name={lesson.title} 
                     onClick={() => this.props.showOneLesson(lesson.id)
-                }> {lesson.title}
+                }>
+                    {lesson.title}
                 </button>
             </li>
         )
     }
 
     render() {
-        return <div className="course-nav">
-            <h4>Lessons</h4>
-            <ul>
-                {this.renderMenu()}
-                {/* <button type="button" onClick={event => this.props.showAllLessons(event)}>
-                    {this.props.hiddenOrShown ? "Hide All Lessons" : "Show All Lessons"}
-                </button> */}
-            </ul>
-        </div>
+        return <><h4>Lessons</h4>
+            <div className="course-nav">
+                <ul>
+                    {this.renderMenu()}
+                </ul>
+            </div>
+        </>
     }
 }
