@@ -33,15 +33,6 @@ class Course extends Component {
         })
     }
 
-    renderSubscribeButton = () => {
-        if (this.props.subscription) {
-            let sub = this.props.subscription
-            return <button class="unsubscribe" onClick={() => this.props.deleteSubscription(sub.id, sub.user_id)}>Unsubscribe</button>
-        } else {
-            return <button class="subscribe" onClick={() => this.props.createSubscription(this.props.user.id, this.props.course.id)}>Subscribe</button> 
-        }
-    }
-
     nextLessonId() {
         if (this.props.subscription) {
             if (this.state.complete) {
@@ -55,9 +46,9 @@ class Course extends Component {
     handleLessonProgress = (lessonId) => {
         this.props.updateSubscription(lessonId, this.props.subscription.id)
         if (this.finalLesson()) {
-
+            // ADD FINAL LESSON FUNCTION
         } else if (lessonId === this.lastLessonId() ) {
-
+            // ADD LAST LESSON FUNCTION
         }
         else {
             this.showOneLesson(lessonId + 1)
@@ -86,9 +77,11 @@ class Course extends Component {
     }
 
     // CONDITIONALLY RENDER COURSE //
-    renderButton(course) {
+    renderButton() {
+        let course = this.props.course
         if (this.props.subscription) {
-            return <NavLink to={`/courses/${course.id}`}><button>Go to {course.title}</button></NavLink>
+            let sub = this.props.subscription
+            return <button class="unsubscribe" onClick={() => this.props.deleteSubscription(sub.id, sub.user_id)}>Unsubscribe</button>
         } else if (this.props.user) {
             return <button class="subscribe" onClick={() => this.props.createSubscription(this.props.user.id, course.id)}>Subscribe</button>
         } else {
@@ -112,9 +105,9 @@ class Course extends Component {
                         progress={this.props.subscription.lesson_statuses} 
                         showOneLesson={this.showOneLesson}
                         />
-                    {this.renderSubscribeButton()}
+                    {this.renderButton()}
                 </div>
-                { this.state.lesson ? this.renderLesson() : null }
+                { this.state.lesson ? this.renderLesson(this.props.course) : null }
             </div>
     }
 
@@ -126,7 +119,11 @@ class Course extends Component {
 
     renderLessonButton = (lessonId) => { 
         if (lessonId === this.lastLessonId()) {
-            return <button>Complete</button>
+            return <button 
+                    className="next-lesson" 
+                    onClick={() => this.handleLessonProgress(this.state.lesson.id)}>
+                Complete Course
+            </button>
         } else {
             return <button 
                 className="next-lesson" 
