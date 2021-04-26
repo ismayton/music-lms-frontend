@@ -152,7 +152,7 @@ input {
   vertical-align: middle;
 }
 
-.session ul {
+.session ul, .dashboard > .user > ul {
   list-style-type: none;
   margin: auto;
   padding: 15px 0px;
@@ -236,6 +236,9 @@ a:link, a:visited {
 
 .blurb h3, .blurb h4 {
   text-align: left;
+}
+
+.dashboard > .user, .dashboard > .course {
 }
 
 @media only screen and (max-width: 900px){

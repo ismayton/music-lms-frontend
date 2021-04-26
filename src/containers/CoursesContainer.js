@@ -14,12 +14,26 @@ class CoursesContainer extends Component {
         return this.props.courses.map( course => {
             return <div className="course">
                 <h1>{course.title}</h1>
-                <h4>Lessons: {course.lessons.length}</h4>
+                {this.courseDashboard(course)}
                 {this.renderButton(course)}
             </div>
         })
     }
 
+    courseDashboard(course) {
+        let sub = this.subscription(course.id)
+        if (sub) {
+            let count = sub.lesson_statuses.filter(status => status.status === 'complete').length
+            return <div>
+            <h4>Progress: {count} out of {course.lessons.length} Complete</h4>
+        </div>
+        } else {
+            return <div>
+            <h4>Lessons: {course.lessons.length}</h4>
+        </div>
+        }
+    }
+    
     // RETURN ACTIVE SUBSCRIPTION OR NULL //
     subscription = (courseId) => {
         if (this.props.user) {
