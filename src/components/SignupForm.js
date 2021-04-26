@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class SignUpForm extends Component {
     state = {
@@ -27,6 +27,9 @@ export default class SignUpForm extends Component {
     }
 
     render() {
+        if (this.props.user) {
+            return <Redirect from="/signup" to="/" exact />
+        }
         return (
             <div>
                 <h1>Sign up for an Account</h1>

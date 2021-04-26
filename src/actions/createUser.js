@@ -1,24 +1,24 @@
-function createUser(user) {
+export default function createUser(user) {
+    let url = 'http://127.0.0.1:3001/api/v1/users'
+
     let configObj = {
         method: 'POST',
+        headers:  {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
         body: JSON.stringify(user),
-        headers: { "content-type": "application/json" }
     }
 
     return(dispatch) => {
         dispatch({ type: "LOADING_SESSION" })
-        fetch('http://127.0.0.1:3001/api/v1/users', configObj )
+        fetch(url, configObj )
         .then(response => response.json())
         .then(json => { 
-            console.log(json) 
-            if (json.user) {
-                dispatch({ 
-                    type: 'UPDATE_SESSION', 
-                    user: json
-                }) 
-            }  
+            dispatch({ 
+                type: 'UPDATE_SESSION',
+                user: json
+            }) 
         }) 
     }
 }
-
-export default createUser
