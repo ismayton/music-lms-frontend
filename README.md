@@ -1,10 +1,16 @@
 # Music LMS Frontend
 
-This project is a React.js frontend designed as an LMS structure for musicians and music teachers.
+This project is a React.js frontend designed as an LMS structure for musicians and music teachers. Users can create an account, log in, and subscribe to courses to access content. Users can also progress through and complete each course.
 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Music LMS Backend
+
+This backend for this project lives in a separate repository. To run the app, download music-lms-backend from https://github.com/ismayton/music-lms-backend. 
+
+Start up the backend server with `rails s` (this server is set to run on http://localhost:3001 to not overlap the local frontend server).
 
 ## Available Scripts
 
