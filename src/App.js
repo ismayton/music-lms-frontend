@@ -33,7 +33,7 @@ class App extends Component {
     super(props)
     this.state = {
       isLoggedIn: false,
-      user: {}
+      user: null
     }
   }
   
@@ -57,8 +57,7 @@ class App extends Component {
       return <Course 
                   course={course} 
                   user={this.props.user} 
-                  subscription={this.subscription(course.id)}
-                  
+                  subscription={this.subscription(course.id)}   
               />
     } else {
       return <h1>Loading...</h1>
