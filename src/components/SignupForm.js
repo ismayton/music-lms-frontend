@@ -33,27 +33,27 @@ export default class SignUpForm extends Component {
         return (
             <div>
                 <h1>Sign up for an Account</h1>
-                <form onSubmit={event => this.handleSubmit(event)}>
+                <form onSubmit={this.handleSubmit}>
                     <input 
                         type="text" 
                         name="username" 
                         placeholder="Choose a Username"
                         value={this.state.username} 
-                        onChange={event => this.handleChange(event)} 
+                        onChange={this.handleChange} 
                     />
                     <input 
                         type="password" 
                         name="password" 
                         placeholder="Choose a Password"
                         value={this.state.password} 
-                        onChange={event => this.handleChange(event)} 
+                        onChange={this.handleChange} 
                     />
                     <input 
                         type="password" 
                         name="password_confirmation" 
                         placeholder="Confirm Password"
                         value={this.state.password_confirmation} 
-                        onChange={event => this.handleChange(event)} 
+                        onChange={this.handleChange} 
                     />
                     <button type="submit">Submit</button>
                     <div>

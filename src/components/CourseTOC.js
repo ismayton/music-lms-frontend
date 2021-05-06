@@ -30,8 +30,8 @@ export default class CourseTOC extends Component {
                     className={this.lessonStatus(lesson.id)} 
                     id={index} 
                     name={lesson.title} 
-                    onClick={() => this.props.showOneLesson(lesson.id)
-                }>
+                    onClick={() => this.props.showOneLesson(lesson.id)}
+                >
                     {lesson.title}
                 </button>
             </li>
