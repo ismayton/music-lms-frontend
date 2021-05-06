@@ -79,7 +79,7 @@ class Course extends Component {
         }
     }
 
-    loggedOutButtons = () => {
+    loggedOutButtons() {
         return <span>To view this course,
                 <NavLink to="/login"><button>Log In</button></NavLink>
                 or
@@ -87,7 +87,7 @@ class Course extends Component {
             </span>
     }
 
-    courseContent = () => {
+    courseContent() {
         return <div className="container">
                 <div className="course sidebar">
                     <CourseTOC 
@@ -108,7 +108,7 @@ class Course extends Component {
             </div>
     }
 
-    renderLessonButton = (lessonId) => {
+    renderLessonButton(lessonId) {
         if (this.props.subscription.complete) {
             return <h3>Congratulations! You have completed the course!</h3>
         } else if (lessonId === this.lastLessonId()) {
