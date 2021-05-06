@@ -109,7 +109,6 @@ class Course extends Component {
     }
 
     renderLessonButton = (lessonId) => {
-        console.log(this.props.subscription.complete)
         if (this.props.subscription.complete) {
             return <h3>Congratulations! You have completed the course!</h3>
         } else if (lessonId === this.lastLessonId()) {

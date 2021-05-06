@@ -17,6 +17,7 @@ export default class TeacherDashboard extends Component {
             </ul>
         </div>)
     }
+
     render() {
         if (this.props.teacher) {
             return <div class="dashboard">

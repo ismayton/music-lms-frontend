@@ -52,7 +52,7 @@ class App extends Component {
 
   renderCourse = (props) => {
     let matchId = parseInt(props.match.params.id)
-    if(this.props.courses.length > 0) {
+    if (this.props.courses.length > 0) {
       let course = this.props.courses.find(course => course.id === matchId)
       return <Course 
                   course={course} 

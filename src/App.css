@@ -102,6 +102,10 @@ button.complete {
   background-color: grey;
 }
 
+button.complete.hidden {
+  display: none;  
+}
+
 button.active {
   background-color: pink;
 }

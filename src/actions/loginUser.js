@@ -9,17 +9,17 @@ export default function loginUser(user) {
         },
         body: JSON.stringify(user)
     }
-
-    return(dispatch) => {      
+    
+    return(dispatch) => {  
         dispatch({ type: "LOADING_SESSION" })
         fetch(url, configObj)
-        .then(response => response.json())
-        .then(json => {
+            .then(response => response.json())
+            .then(json => {
+                console.log('d')
                 dispatch({ 
                     type: 'UPDATE_SESSION', 
                     user: json
                 })
-            }      
-        )
+            })
     }
 }
