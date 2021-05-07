@@ -1,5 +1,5 @@
 export default function deleteSubscription(subId, userId) {  
-    let url = `http://127.0.0.1:3001/api/v1/subscriptions/${subId}`
+    let url = `https://hhma-api.herokuapp.com/api/v1/subscriptions/${subId}`
 
     let configObj = {
         method: 'DELETE',

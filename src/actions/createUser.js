@@ -1,5 +1,5 @@
 export default function createUser(user) {
-    let url = 'http://127.0.0.1:3001/api/v1/users'
+    let url = 'https://hhma-api.herokuapp.com/api/v1/users'
 
     let configObj = {
         method: 'POST',

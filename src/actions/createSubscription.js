@@ -1,5 +1,5 @@
 export default function createSubscription(userId, courseId) {  
-    let url = `http://127.0.0.1:3001/api/v1/subscriptions`
+    let url = `https://hhma-api.herokuapp.com/api/v1/subscriptions`
 
     let configObj = {
         method: 'POST',

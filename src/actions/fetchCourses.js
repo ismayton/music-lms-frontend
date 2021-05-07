@@ -1,5 +1,5 @@
 const fetchCourses = () => {  
-    let url = 'http://127.0.0.1:3001/api/v1/courses'
+    let url = 'https://hhma-api.herokuapp.com/api/v1/courses'
     
     return(dispatch) => {      
         dispatch({ type: "LOADING_COURSES" })
