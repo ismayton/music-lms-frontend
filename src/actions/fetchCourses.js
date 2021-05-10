@@ -1,17 +1,24 @@
-const fetchCourses = () => {  
+export default function fetchCourses() {  
     let url = 'https://hhma-api.herokuapp.com/api/v1/courses'
-    
-    return(dispatch) => {      
+    let configObj = {
+            method: 'GET',
+            headers:  {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        }
+
+    // Where is the fetch request going wrong from the server? check on ACAO and fetch response //
+    return(dispatch) => { 
         dispatch({ type: "LOADING_COURSES" })
-        fetch(url)
-        .then(response => response.json())
-        .then(json => { 
-            dispatch({ 
-                type: 'CHANGE_COURSES', 
-                courses: json
-            }) 
-        })
+        fetch(url, configObj)
+            .then(response => response.json())
+            .then(json => {
+                dispatch({ 
+                    type: 'CHANGE_COURSES', 
+                    courses: json
+                }) 
+            })
     }
 }
-
-export default fetchCourses

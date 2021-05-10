@@ -9,7 +9,7 @@ import rootReducer from './reducers/rootReducer'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <App />
   </Provider>,

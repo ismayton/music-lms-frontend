@@ -41,7 +41,7 @@ p, div, span {
 .App-logo {
   margin-top: 25px;
   margin-bottom: 0px;
-  width: 400px;
+  max-width: 400px;
   pointer-events: none;
 }
 .App-icon {
@@ -270,6 +270,10 @@ div.dashboard > .user, div.dashboard > .course {
     position: relative;
     top: 25px;
     left: 0;
+  }
+
+  .App-logo {
+    width: 300px;
   }
 
   .course.sidebar {

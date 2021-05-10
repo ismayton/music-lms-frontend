@@ -40,6 +40,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchCourses()
     this.props.fetchTeacher(1)
+    
   }
 
   subscription = (courseId) => {
