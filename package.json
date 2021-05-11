@@ -17,8 +17,6 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "dev:build-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
-    "dev:start": "nodemon ./server-build/index.js",
     "dev": "npm-run-all --parallel build dev:*",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -47,5 +45,17 @@
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "webpack-cli": "^4.7.0"
+  },
+  "description": "This project is a React.js frontend designed as an LMS structure for musicians and music teachers. Users can create an account, log in, and subscribe to courses to access content. Users can also progress through and complete each course.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismayton/music-lms-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismayton/music-lms-frontend/issues"
   }
 }
