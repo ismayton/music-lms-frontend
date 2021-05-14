@@ -280,3 +280,15 @@ div.dashboard > .user, div.dashboard > .course {
     margin: 15px;
   }
 }
+
+@media only screen and (max-width: 450px){  
+  .App-logo {
+    width: 300px;
+  }
+
+  .lesson .video, iframe {
+    width: auto;
+    height: auto;
+  }
+
+}
